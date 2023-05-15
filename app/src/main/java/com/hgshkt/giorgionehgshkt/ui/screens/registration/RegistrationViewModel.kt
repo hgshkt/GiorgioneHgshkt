@@ -2,11 +2,10 @@ package com.hgshkt.giorgionehgshkt.ui.screens.registration
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import com.hgshkt.data.authentication.registration.RegistrationServiceImpl
 import com.hgshkt.domain.model.User
-import com.hgshkt.domain.repository.UserRepository
 
 class RegistrationViewModel(
-    private val repository: UserRepository,
     private val registrationUseCases: RegistrationUseCases
 ) : ViewModel() {
 
@@ -24,7 +23,7 @@ class RegistrationViewModel(
         )
         registrationUseCases.createUserUseCase.execute(
             user = user,
-            repository = repository
+            registrationService = RegistrationServiceImpl()
         )
     }
 }

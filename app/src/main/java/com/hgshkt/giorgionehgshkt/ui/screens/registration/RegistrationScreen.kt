@@ -9,54 +9,46 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
-import com.hgshkt.data.registration.FirebaseAuthenticationService
-import com.hgshkt.data.repository.UserRepositoryImpl
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RegistrationScreen() {
-    val repository = UserRepositoryImpl(
-        registrationService = FirebaseAuthenticationService()
-    )
-    val registrationUseCases = RegistrationUseCases()
-
     val viewModel = remember {
         RegistrationViewModel(
-            repository = repository,
-            registrationUseCases = registrationUseCases
+            registrationUseCases = RegistrationUseCases()
         )
     }
 
-    var name = viewModel.name.value
-    var id = viewModel.id.value
-    var email = viewModel.email.value
-    var password = viewModel.password.value
+    val name = viewModel.name
+    val id = viewModel.id
+    val email = viewModel.email
+    val password = viewModel.password
 
     Column(modifier = Modifier.padding(16.dp)) {
         OutlinedTextField(
-            value = name,
-            onValueChange = { name = it },
+            value = name.value,
+            onValueChange = { name.value = it },
             label = { Text(text = "Name") },
             modifier = Modifier.fillMaxWidth()
         )
         Spacer(modifier = Modifier.height(16.dp))
         OutlinedTextField(
-            value = id,
-            onValueChange = { id = it },
+            value = id.value,
+            onValueChange = { id.value = it },
             label = { Text(text = "ID") },
             modifier = Modifier.fillMaxWidth()
         )
         Spacer(modifier = Modifier.height(16.dp))
         OutlinedTextField(
-            value = email,
-            onValueChange = { email = it },
+            value = email.value,
+            onValueChange = { email.value = it },
             label = { Text(text = "Email") },
             modifier = Modifier.fillMaxWidth()
         )
         Spacer(modifier = Modifier.height(16.dp))
         OutlinedTextField(
-            value = password,
-            onValueChange = { password = it },
+            value = password.value,
+            onValueChange = { password.value = it },
             label = { Text(text = "Password") },
             visualTransformation = PasswordVisualTransformation(),
             modifier = Modifier.fillMaxWidth()
@@ -68,5 +60,4 @@ fun RegistrationScreen() {
             Text(text = "Register")
         }
     }
-
 }

@@ -1,13 +1,13 @@
 package com.hgshkt.domain.usecases
 
+import com.hgshkt.domain.authentication.RegistrationService
 import com.hgshkt.domain.model.User
-import com.hgshkt.domain.repository.UserRepository
 
 class CreateUserUseCase {
     fun execute(
-        repository: UserRepository,
+        registrationService: RegistrationService,
         user: User
     ) {
-        repository.create(user)
+        registrationService.registration(user)
     }
 }
