@@ -1,7 +1,8 @@
 package com.hgshkt.data.storage
 
 import com.google.firebase.database.FirebaseDatabase
-import com.hgshkt.data.storage.models.StorageUser
+import com.hgshkt.data.storage.user.FirebaseUserStorage
+import com.hgshkt.data.storage.user.models.StorageUser
 import org.junit.Before
 import org.junit.Test
 

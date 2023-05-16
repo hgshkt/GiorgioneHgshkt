@@ -3,7 +3,7 @@ package com.hgshkt.data.authentication.registration
 import com.hgshkt.data.authentication.AuthenticationService
 import com.hgshkt.data.authentication.FirebaseAuthenticationService
 import com.hgshkt.data.authentication.models.RegistrationData
-import com.hgshkt.data.storage.repository.UserRepositoryImpl
+import com.hgshkt.data.repository.UserRepositoryImpl
 import com.hgshkt.domain.authentication.RegistrationService
 import com.hgshkt.domain.model.Key
 import com.hgshkt.domain.model.User

@@ -1,4 +1,4 @@
-package com.hgshkt.data.storage.models
+package com.hgshkt.data.storage.user.models
 
 data class StorageUser(
     var name: String,

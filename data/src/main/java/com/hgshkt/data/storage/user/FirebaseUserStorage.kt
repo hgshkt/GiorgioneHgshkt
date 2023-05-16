@@ -1,7 +1,7 @@
-package com.hgshkt.data.storage
+package com.hgshkt.data.storage.user
 
 import com.google.firebase.database.DatabaseReference
-import com.hgshkt.data.storage.models.StorageUser
+import com.hgshkt.data.storage.user.models.StorageUser
 
 class FirebaseUserStorage(
     private val reference: DatabaseReference
@@ -9,5 +9,9 @@ class FirebaseUserStorage(
 
     override fun save(user: StorageUser, key: String) {
         reference.child(key).setValue(user)
+    }
+
+    override suspend fun get(key: String): StorageUser {
+        TODO("Not yet implemented")
     }
 }
