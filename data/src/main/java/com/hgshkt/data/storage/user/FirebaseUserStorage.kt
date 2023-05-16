@@ -2,6 +2,7 @@ package com.hgshkt.data.storage.user
 
 import com.google.firebase.database.DatabaseReference
 import com.hgshkt.data.storage.user.models.StorageUser
+import kotlinx.coroutines.tasks.await
 
 class FirebaseUserStorage(
     private val reference: DatabaseReference
@@ -12,6 +13,6 @@ class FirebaseUserStorage(
     }
 
     override suspend fun get(key: String): StorageUser {
-        TODO("Not yet implemented")
+        return reference.child(key).get().await().getValue(StorageUser::class.java)!!
     }
 }
