@@ -9,7 +9,9 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            ProfileScreen(userId = "l0rCBGOi9cb8p7XC9noRU7GCYMD2")
+            ProfileScreen(
+                userId = "l0rCBGOi9cb8p7XC9noRU7GCYMD2"
+            )
         }
     }
 }

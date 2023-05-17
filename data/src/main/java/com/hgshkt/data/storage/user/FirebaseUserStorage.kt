@@ -1,12 +1,12 @@
 package com.hgshkt.data.storage.user
 
-import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.hgshkt.data.storage.user.models.StorageUser
 import kotlinx.coroutines.tasks.await
 
-class FirebaseUserStorage(
-    private val reference: DatabaseReference
-): UserStorage {
+class FirebaseUserStorage: UserStorage {
+
+    private val reference = FirebaseDatabase.getInstance().getReference("users")
 
     override fun save(user: StorageUser, key: String) {
         reference.child(key).setValue(user)

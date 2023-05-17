@@ -4,5 +4,6 @@ data class StorageUser(
     var name: String = "",
     var id: String = "",
     var email: String = "",
-    var password: String = ""
+    var password: String = "",
+    var avatarUrl: String = ""
 )

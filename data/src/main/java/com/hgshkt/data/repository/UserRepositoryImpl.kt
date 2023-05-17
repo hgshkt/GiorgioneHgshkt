@@ -1,6 +1,5 @@
 package com.hgshkt.data.repository
 
-import com.google.firebase.database.FirebaseDatabase
 import com.hgshkt.data.storage.user.FirebaseUserStorage
 import com.hgshkt.data.storage.user.models.StorageUser
 import com.hgshkt.domain.model.Key
@@ -9,9 +8,7 @@ import com.hgshkt.domain.repository.UserRepository
 
 class UserRepositoryImpl : UserRepository {
 
-    private val storage = FirebaseUserStorage(
-        reference = FirebaseDatabase.getInstance().getReference("users")
-    )
+    private val storage = FirebaseUserStorage()
 
     override fun save(user: User, key: Key) {
         val storageUser = mapToStorage(user)
@@ -29,6 +26,7 @@ class UserRepositoryImpl : UserRepository {
             id = storageUser.id,
             email = storageUser.email,
             password = storageUser.password,
+            avatarUrl = storageUser.avatarUrl
         )
     }
 
@@ -37,7 +35,8 @@ class UserRepositoryImpl : UserRepository {
             name = user.name,
             id = user.id,
             email = user.email,
-            password = user.password
+            password = user.password,
+            avatarUrl = user.avatarUrl
         )
     }
 }
