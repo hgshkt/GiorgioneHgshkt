@@ -36,10 +36,8 @@ class ProfileViewModel(
         viewModelScope.launch {
             launch {
                 user.value = profileUseCases.getUserById.execute(userId)
-                println("qqq: ${user.value.avatarUrl}")
             }
             _publications.addAll(profileUseCases.getUserPublications.execute(userId))
         }
-
     }
 }
