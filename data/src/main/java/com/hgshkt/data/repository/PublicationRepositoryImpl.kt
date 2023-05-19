@@ -11,4 +11,8 @@ class PublicationRepositoryImpl(
     override suspend fun getUserPublications(userId: String): List<Publication> {
         return storage.getUserPublications(userId) ?: listOf()
     }
+
+    override fun upload(publication: Publication) {
+        TODO("Not yet implemented")
+    }
 }
