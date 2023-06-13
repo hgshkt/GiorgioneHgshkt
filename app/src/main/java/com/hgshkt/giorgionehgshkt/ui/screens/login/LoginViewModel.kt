@@ -3,9 +3,12 @@ package com.hgshkt.giorgionehgshkt.ui.screens.login
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.hgshkt.domain.authentication.models.LoginData
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class LoginViewModel(
-    private val loginUseCases: LoginUseCases = LoginUseCases()
+@HiltViewModel
+class LoginViewModel @Inject constructor(
+    private val loginUseCases: LoginUseCases
 ): ViewModel() {
     val email = mutableStateOf("")
     val password = mutableStateOf("")

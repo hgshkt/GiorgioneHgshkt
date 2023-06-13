@@ -4,6 +4,7 @@ plugins {
     id 'com.google.gms.google-services'
     id 'kotlin-kapt'
 }
+apply plugin: 'com.google.dagger.hilt.android'
 
 android {
     namespace 'com.hgshkt.giorgionehgshkt'
@@ -31,13 +32,14 @@ android {
     }
     kotlinOptions {
         jvmTarget = '17'
+        apiVersion = '1.6'
     }
     buildFeatures {
         compose true
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.6"
+        kotlinCompilerExtensionVersion = "1.4.1"
     }
 }
 
@@ -70,15 +72,14 @@ dependencies {
     implementation 'androidx.activity:activity-compose:1.6.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1'
 
+    // ViewModel Compose
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.4.1"
+
     //Dagger - Hilt
-    implementation "com.google.dagger:hilt-android:2.28-alpha"
-    kapt "com.google.dagger:hilt-android-compiler:2.28-alpha"
-
-    implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02"
-    kapt "androidx.hilt:hilt-compiler:1.0.0-alpha02"
-
-    // Activity KTX for viewModels()
-    implementation "androidx.activity:activity-ktx:1.1.0"
+    implementation 'com.google.dagger:hilt-android:2.46.1'
+    kapt 'com.google.dagger:hilt-compiler:2.46.1'
+    kapt "androidx.hilt:hilt-compiler:1.0.0"
+    implementation 'androidx.hilt:hilt-navigation-compose:1.0.0'
 }
 
 kapt {
