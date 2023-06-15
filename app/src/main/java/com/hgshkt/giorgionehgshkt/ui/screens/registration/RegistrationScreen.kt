@@ -9,15 +9,12 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RegistrationScreen() {
-    val viewModel = remember {
-        RegistrationViewModel(
-            registrationUseCases = RegistrationUseCases()
-        )
-    }
+    val viewModel = hiltViewModel<RegistrationViewModel>()
 
     val name = viewModel.name
     val id = viewModel.id

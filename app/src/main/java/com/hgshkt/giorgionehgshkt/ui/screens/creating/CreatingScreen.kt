@@ -26,20 +26,22 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CreatingScreen() {
 
-    val viewModel = CreatingViewModel()
+    val viewModel = hiltViewModel<CreatingViewModel>()
 
     val url = viewModel.url
     val text = viewModel.text
 
-    val launcher =
-        rememberLauncherForActivityResult(contract = ActivityResultContracts.GetContent()) { uri: Uri? ->
-            url.value = uri.toString()
-        }
+    val launcher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.GetContent()
+    ) { uri: Uri? ->
+        url.value = uri.toString()
+    }
 
     Column(
         modifier = Modifier.fillMaxSize()

@@ -4,8 +4,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.hgshkt.data.authentication.registration.RegistrationServiceImpl
 import com.hgshkt.domain.model.User
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class RegistrationViewModel(
+@HiltViewModel
+class RegistrationViewModel @Inject constructor(
     private val registrationUseCases: RegistrationUseCases
 ) : ViewModel() {
 

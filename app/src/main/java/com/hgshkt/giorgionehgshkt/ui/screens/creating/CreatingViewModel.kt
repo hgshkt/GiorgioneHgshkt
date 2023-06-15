@@ -3,9 +3,12 @@ package com.hgshkt.giorgionehgshkt.ui.screens.creating
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.hgshkt.domain.model.Publication
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class CreatingViewModel(
-    private val creatingUseCases: CreatingUseCases = CreatingUseCases()
+@HiltViewModel
+class CreatingViewModel @Inject constructor(
+    private val creatingUseCases: CreatingUseCases
 ): ViewModel() {
 
     val text = mutableStateOf("")

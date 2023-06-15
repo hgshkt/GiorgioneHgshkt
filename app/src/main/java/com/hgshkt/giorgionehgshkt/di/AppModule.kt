@@ -1,9 +1,17 @@
 package com.hgshkt.giorgionehgshkt.di
 
 import com.hgshkt.data.authentication.login.FirebaseLoginService
+import com.hgshkt.data.repository.PublicationRepositoryImpl
+import com.hgshkt.data.storage.publication.FirebasePublicationStorage
+import com.hgshkt.data.storage.publication.PublicationStorage
 import com.hgshkt.domain.authentication.LoginService
+import com.hgshkt.domain.repository.PublicationRepository
+import com.hgshkt.domain.usecases.CreateUserUseCase
 import com.hgshkt.domain.usecases.LoginUseCase
+import com.hgshkt.domain.usecases.UploadPublicationUseCase
+import com.hgshkt.giorgionehgshkt.ui.screens.creating.CreatingUseCases
 import com.hgshkt.giorgionehgshkt.ui.screens.login.LoginUseCases
+import com.hgshkt.giorgionehgshkt.ui.screens.registration.RegistrationUseCases
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -26,5 +34,35 @@ object AppModule {
     @Provides
     fun provideLoginService(): LoginService {
         return FirebaseLoginService()
+    }
+
+    @Provides
+    fun provideCreatingUseCases(uploadPublicationUseCase: UploadPublicationUseCase): CreatingUseCases{
+        return CreatingUseCases(uploadPublicationUseCase)
+    }
+
+    @Provides
+    fun provideUploadPublicationUseCase(repository: PublicationRepository): UploadPublicationUseCase{
+        return UploadPublicationUseCase(repository)
+    }
+
+    @Provides
+    fun providePublicationRepository(storage: PublicationStorage): PublicationRepository {
+        return PublicationRepositoryImpl(storage)
+    }
+
+    @Provides
+    fun providePublicationStorage():PublicationStorage{
+        return FirebasePublicationStorage()
+    }
+
+    @Provides
+    fun provideRegistrationUseCases(createUserUseCase: CreateUserUseCase): RegistrationUseCases {
+        return RegistrationUseCases(createUserUseCase)
+    }
+
+    @Provides
+    fun provideRCreateUserUseCase(): CreateUserUseCase {
+        return CreateUserUseCase()
     }
 }
