@@ -1,9 +1,9 @@
 package com.hgshkt.giorgionehgshkt.ui.screens.profile
 
-import com.hgshkt.domain.usecases.GetUserById
-import com.hgshkt.domain.usecases.GetUserPublications
+import com.hgshkt.domain.usecases.GetUserByIdUseCase
+import com.hgshkt.domain.usecases.GetUserPublicationsUseCase
 
 data class ProfileUseCases(
-    val getUserById: GetUserById,
-    val getUserPublications: GetUserPublications
+    val getUserByIdUseCase: GetUserByIdUseCase,
+    val getUserPublicationsUseCase: GetUserPublicationsUseCase
 )

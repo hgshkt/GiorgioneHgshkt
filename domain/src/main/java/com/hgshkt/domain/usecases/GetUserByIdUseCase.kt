@@ -4,7 +4,7 @@ import com.hgshkt.domain.model.Key
 import com.hgshkt.domain.model.User
 import com.hgshkt.domain.repository.UserRepository
 
-class GetUserById(
+class GetUserByIdUseCase(
     private val repository: UserRepository
 ) {
     suspend fun execute(userId: String): User {

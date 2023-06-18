@@ -32,9 +32,11 @@ fun ProfileScreen(
     val publications = viewModel.publications
 
     Column(modifier = Modifier.fillMaxSize()) {
-        Row(modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp)) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+        ) {
             Image(
                 painter = rememberImagePainter(
                     data = user.value.avatarUrl
