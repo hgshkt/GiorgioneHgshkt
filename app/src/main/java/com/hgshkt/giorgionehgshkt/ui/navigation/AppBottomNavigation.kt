@@ -12,7 +12,6 @@ import androidx.navigation.*
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.rememberNavController
 
 private val items = listOf(
     Screen.Profile,
@@ -22,7 +21,7 @@ private val items = listOf(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppBottomNavigation(
-    navController: NavController = rememberNavController()
+    navController: NavHostController
 ) {
     Scaffold(
         bottomBar = {
@@ -48,7 +47,8 @@ fun AppBottomNavigation(
         }
     ) { innerPadding ->
         AppNavHost(
-            modifier = Modifier.padding(innerPadding)
+            modifier = Modifier.padding(innerPadding),
+            navController = navController
         )
     }
 }
