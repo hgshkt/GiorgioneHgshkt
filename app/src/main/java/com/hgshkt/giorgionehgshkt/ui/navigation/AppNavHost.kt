@@ -7,6 +7,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.hgshkt.giorgionehgshkt.ui.screens.creating.CreatingScreen
 import com.hgshkt.giorgionehgshkt.ui.screens.profile.ProfileScreen
 
 private const val currentUserId = "l0rCBGOi9cb8p7XC9noRU7GCYMD2"
@@ -21,6 +22,7 @@ fun AppNavHost(
         startDestination = "profile",
         modifier = modifier
     ) {
-        composable("profile") { ProfileScreen(currentUserId) }
+        composable(Screen.Profile.route) { ProfileScreen(currentUserId) }
+        composable(Screen.Creating.route) { CreatingScreen() }
     }
 }

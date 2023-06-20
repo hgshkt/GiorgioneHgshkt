@@ -7,6 +7,7 @@ import com.hgshkt.data.storage.publication.FirebasePublicationStorage
 import com.hgshkt.data.storage.publication.PublicationStorage
 import com.hgshkt.domain.authentication.LoginService
 import com.hgshkt.domain.repository.PublicationRepository
+import com.hgshkt.domain.repository.UserRepository
 import com.hgshkt.domain.usecases.CreateUserUseCase
 import com.hgshkt.domain.usecases.GetUserByIdUseCase
 import com.hgshkt.domain.usecases.GetUserPublicationsUseCase
@@ -79,12 +80,17 @@ object AppModule {
     }
 
     @Provides
-    fun provideGetUserByIdUseCase(repository: UserRepositoryImpl): GetUserByIdUseCase {
+    fun provideGetUserByIdUseCase(repository: UserRepository): GetUserByIdUseCase {
         return GetUserByIdUseCase(repository)
     }
 
     @Provides
-    fun provideGetUserPublicationsUseCase(repository: PublicationRepositoryImpl): GetUserPublicationsUseCase {
+    fun provideUserRepository(): UserRepository {
+        return UserRepositoryImpl()
+    }
+
+    @Provides
+    fun provideGetUserPublicationsUseCase(repository: PublicationRepository): GetUserPublicationsUseCase {
         return GetUserPublicationsUseCase(repository)
     }
 }

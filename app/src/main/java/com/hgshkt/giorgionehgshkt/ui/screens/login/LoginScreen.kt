@@ -20,9 +20,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 fun LoginScreen() {
 
     val viewModel = hiltViewModel<LoginViewModel>()
+
     var email = viewModel.email.value
     var password = viewModel.password.value
-
 
     Column(modifier = Modifier.padding(16.dp)) {
         OutlinedTextField(

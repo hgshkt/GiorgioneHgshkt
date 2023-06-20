@@ -1,5 +1,6 @@
 package com.hgshkt.giorgionehgshkt.ui.screens.profile
 
+import android.app.Activity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,21 +14,28 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.rememberImagePainter
+import com.hgshkt.giorgionehgshkt.di.ViewModelFactoryProvider
+import dagger.hilt.android.EntryPointAccessors
 
 @Composable
 fun ProfileScreen(
     userId: String
 ) {
-    val viewModel = remember {
-        ProfileViewModel(
-            userId = userId
-        )
-    }
+    val factory = EntryPointAccessors.fromActivity(
+        LocalContext.current as Activity,
+        ViewModelFactoryProvider::class.java
+    ).profileViewModelFactory()
+
+    val viewModel = viewModel<ProfileViewModel>(
+        factory = ProfileViewModel.provideProfileViewModelFactory(factory, userId)
+    )
+
     val user = viewModel.user
     val publications = viewModel.publications
 

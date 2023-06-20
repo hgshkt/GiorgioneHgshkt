@@ -3,18 +3,20 @@ package com.hgshkt.giorgionehgshkt.ui.screens.profile
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.hgshkt.domain.model.Publication
 import com.hgshkt.domain.model.User
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-class ProfileViewModel(
+class ProfileViewModel @AssistedInject constructor(
+    private val profileUseCases: ProfileUseCases,
+    @Assisted
     private val userId: String
 ) : ViewModel() {
-
-    @Inject
-    lateinit var profileUseCases: ProfileUseCases
 
     private val _publications: MutableList<Publication> = mutableStateListOf()
     var publications: MutableList<Publication> = _publications
@@ -27,6 +29,21 @@ class ProfileViewModel(
                 user.value = profileUseCases.getUserByIdUseCase.execute(userId)
             }
             _publications.addAll(profileUseCases.getUserPublicationsUseCase.execute(userId))
+        }
+    }
+
+    @AssistedFactory
+    interface Factory {
+        fun create(userId: String): ProfileViewModel
+    }
+
+    companion object {
+        fun provideProfileViewModelFactory(factory: Factory, userId: String) : ViewModelProvider.Factory {
+            return object: ViewModelProvider.Factory {
+                override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                    return factory.create(userId) as T
+                }
+            }
         }
     }
 }
