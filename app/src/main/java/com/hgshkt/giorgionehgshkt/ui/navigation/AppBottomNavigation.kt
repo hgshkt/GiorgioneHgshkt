@@ -12,10 +12,11 @@ import androidx.navigation.*
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.hgshkt.giorgionehgshkt.ui.navigation.screens.MainScreen
 
 private val items = listOf(
-    Screen.Profile,
-    Screen.Creating,
+    MainScreen.Profile,
+    MainScreen.Creating,
 )
 
 @OptIn(ExperimentalMaterial3Api::class)

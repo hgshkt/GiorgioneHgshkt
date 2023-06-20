@@ -6,8 +6,13 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navigation
+import com.hgshkt.giorgionehgshkt.ui.navigation.screens.MainScreen
+import com.hgshkt.giorgionehgshkt.ui.navigation.screens.Screen
 import com.hgshkt.giorgionehgshkt.ui.screens.creating.CreatingScreen
+import com.hgshkt.giorgionehgshkt.ui.screens.login.LoginScreen
 import com.hgshkt.giorgionehgshkt.ui.screens.profile.ProfileScreen
+import com.hgshkt.giorgionehgshkt.ui.screens.registration.RegistrationScreen
 
 private const val currentUserId = "l0rCBGOi9cb8p7XC9noRU7GCYMD2"
 
@@ -18,10 +23,21 @@ fun AppNavHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = Screen.Profile.route,
+        startDestination = MainScreen.Profile.route,
         modifier = modifier
     ) {
-        composable(Screen.Profile.route) { ProfileScreen(currentUserId) }
-        composable(Screen.Creating.route) { CreatingScreen() }
+        navigation(
+            startDestination = Screen.Login.route,
+            route = "auth"
+        ) {
+            composable(Screen.Login.route) {
+                LoginScreen()
+            }
+            composable(Screen.Registration.route) {
+                RegistrationScreen()
+            }
+        }
+        composable(MainScreen.Profile.route) { ProfileScreen(currentUserId) }
+        composable(MainScreen.Creating.route) { CreatingScreen() }
     }
 }

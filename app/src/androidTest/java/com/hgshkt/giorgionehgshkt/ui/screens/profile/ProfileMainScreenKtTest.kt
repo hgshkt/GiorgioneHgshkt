@@ -3,7 +3,7 @@ package com.hgshkt.giorgionehgshkt.ui.screens.profile
 import androidx.compose.runtime.Composable
 import org.junit.Test
 
-class ProfileScreenKtTest {
+class ProfileMainScreenKtTest {
 
     @Test
     @Composable
