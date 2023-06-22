@@ -1,13 +1,17 @@
 package com.hgshkt.giorgionehgshkt.di
 
+import com.google.firebase.auth.FirebaseAuth
+import com.hgshkt.data.authentication.AuthenticationService
+import com.hgshkt.data.authentication.FirebaseAuthenticationService
 import com.hgshkt.data.authentication.login.FirebaseLoginService
 import com.hgshkt.data.repository.PublicationRepositoryImpl
 import com.hgshkt.data.repository.UserRepositoryImpl
 import com.hgshkt.data.storage.publication.FirebasePublicationStorage
 import com.hgshkt.data.storage.publication.PublicationStorage
+import com.hgshkt.data.storage.user.UserStorage
 import com.hgshkt.domain.authentication.LoginService
-import com.hgshkt.domain.repository.PublicationRepository
-import com.hgshkt.domain.repository.UserRepository
+import com.hgshkt.domain.repository.publication.PublicationRepository
+import com.hgshkt.domain.repository.user.UserRepository
 import com.hgshkt.domain.usecases.CreateUserUseCase
 import com.hgshkt.domain.usecases.GetUserByIdUseCase
 import com.hgshkt.domain.usecases.GetUserPublicationsUseCase
@@ -33,12 +37,22 @@ object AppModule {
 
     @Provides
     fun provideLoginUseCase(loginService: LoginService): LoginUseCase {
-        return LoginUseCase(loginService = loginService)
+        return LoginUseCase(loginService)
     }
 
     @Provides
-    fun provideLoginService(): LoginService {
-        return FirebaseLoginService()
+    fun provideLoginService(auth: AuthenticationService): LoginService {
+        return FirebaseLoginService(auth)
+    }
+
+    @Provides
+    fun provideAuthenticationService(auth: FirebaseAuth): AuthenticationService {
+        return FirebaseAuthenticationService(auth)
+    }
+
+    @Provides
+    fun provideFirebaseAuth(): FirebaseAuth {
+        return FirebaseAuth.getInstance()
     }
 
     @Provides
@@ -67,7 +81,7 @@ object AppModule {
     }
 
     @Provides
-    fun provideRCreateUserUseCase(): CreateUserUseCase {
+    fun provideCreateUserUseCase(): CreateUserUseCase {
         return CreateUserUseCase()
     }
 
@@ -85,8 +99,8 @@ object AppModule {
     }
 
     @Provides
-    fun provideUserRepository(): UserRepository {
-        return UserRepositoryImpl()
+    fun provideUserRepository(storage: UserStorage): UserRepository {
+        return UserRepositoryImpl(storage)
     }
 
     @Provides

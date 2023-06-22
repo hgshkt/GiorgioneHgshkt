@@ -1,14 +1,14 @@
 package com.hgshkt.domain.usecases
 
-import com.hgshkt.domain.model.Key
+import com.hgshkt.domain.repository.user.Key
 import com.hgshkt.domain.model.User
-import com.hgshkt.domain.repository.UserRepository
+import com.hgshkt.domain.repository.user.UserRepository
 
 class GetUserByIdUseCase(
     private val repository: UserRepository
 ) {
     suspend fun execute(userId: String): User {
-        val key = Key(value = userId)
+        val key = Key(userId = userId)
         return repository.get(key)
     }
 }

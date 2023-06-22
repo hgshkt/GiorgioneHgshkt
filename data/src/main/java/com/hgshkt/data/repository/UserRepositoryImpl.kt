@@ -1,23 +1,27 @@
 package com.hgshkt.data.repository
 
-import com.hgshkt.data.storage.user.FirebaseUserStorage
+import com.hgshkt.data.storage.user.UserStorage
 import com.hgshkt.data.storage.user.models.StorageUser
-import com.hgshkt.domain.model.Key
+import com.hgshkt.domain.repository.user.Key
 import com.hgshkt.domain.model.User
-import com.hgshkt.domain.repository.UserRepository
+import com.hgshkt.domain.repository.user.UserRepository
 
-class UserRepositoryImpl : UserRepository {
-
-    private val storage = FirebaseUserStorage()
+class UserRepositoryImpl(
+    private val storage: UserStorage
+) : UserRepository {
 
     override fun save(user: User, key: Key) {
         val storageUser = mapToStorage(user)
-        storage.save(storageUser, key.value)
+        storage.save(storageUser, key.userId)
     }
 
     override suspend fun get(key: Key): User {
-        val storageUser = storage.get(key.value)
+        val storageUser = storage.get(key.userId)
         return mapToDomain(storageUser)
+    }
+
+    override fun delete(key: Key) {
+        storage.delete(key.userId)
     }
 
     private fun mapToDomain(storageUser: StorageUser): User {

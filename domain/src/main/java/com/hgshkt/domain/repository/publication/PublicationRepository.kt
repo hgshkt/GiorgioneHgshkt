@@ -1,4 +1,4 @@
-package com.hgshkt.domain.repository
+package com.hgshkt.domain.repository.publication
 
 import com.hgshkt.domain.model.Publication
 

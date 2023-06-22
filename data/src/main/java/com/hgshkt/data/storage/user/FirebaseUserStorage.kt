@@ -15,4 +15,9 @@ class FirebaseUserStorage: UserStorage {
     override suspend fun get(key: String): StorageUser {
         return reference.child(key).get().await().getValue(StorageUser::class.java)!!
     }
+
+
+    override fun delete(key: String) {
+        reference.child(key).removeValue()
+    }
 }

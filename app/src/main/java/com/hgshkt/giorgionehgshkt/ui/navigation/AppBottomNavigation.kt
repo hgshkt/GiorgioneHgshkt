@@ -17,6 +17,7 @@ import com.hgshkt.giorgionehgshkt.ui.navigation.screens.MainScreen
 private val items = listOf(
     MainScreen.Profile,
     MainScreen.Creating,
+    MainScreen.Settings
 )
 
 @OptIn(ExperimentalMaterial3Api::class)

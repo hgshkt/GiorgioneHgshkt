@@ -6,9 +6,9 @@ import com.hgshkt.data.authentication.models.RegistrationData
 import com.hgshkt.data.authentication.models.RegistrationInfo
 import kotlinx.coroutines.tasks.await
 
-class FirebaseAuthenticationService: AuthenticationService {
-
-    private val auth = FirebaseAuth.getInstance()
+class FirebaseAuthenticationService(
+    private val auth: FirebaseAuth
+): AuthenticationService {
 
     override suspend fun registration(data: RegistrationData): RegistrationInfo {
         val id = auth.createUserWithEmailAndPassword(data.email, data.password)
@@ -17,6 +17,10 @@ class FirebaseAuthenticationService: AuthenticationService {
         return RegistrationInfo(
             id = id
         )
+    }
+
+    override fun signOut() {
+        auth.signOut()
     }
 
     override fun login(data: AuthLoginData) {

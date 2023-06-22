@@ -8,4 +8,6 @@ interface AuthenticationService {
     suspend fun registration(data: RegistrationData): RegistrationInfo
 
     fun login(data: AuthLoginData)
+
+    fun signOut()
 }

@@ -5,16 +5,16 @@ import com.hgshkt.data.authentication.FirebaseAuthenticationService
 import com.hgshkt.data.authentication.models.RegistrationData
 import com.hgshkt.data.repository.UserRepositoryImpl
 import com.hgshkt.domain.authentication.RegistrationService
-import com.hgshkt.domain.model.Key
+import com.hgshkt.domain.repository.user.Key
 import com.hgshkt.domain.model.User
-import com.hgshkt.domain.repository.UserRepository
+import com.hgshkt.domain.repository.user.UserRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class RegistrationServiceImpl(
-    private val firebaseAuthService: AuthenticationService = FirebaseAuthenticationService(),
-    private val repository: UserRepository = UserRepositoryImpl()
+    private val firebaseAuthService: AuthenticationService,
+    private val repository: UserRepository
 ) : RegistrationService {
 
     override fun registration(user: User) {
@@ -22,7 +22,7 @@ class RegistrationServiceImpl(
             val data = getRegistrationDataByUser(user)
             val registrationInfo = firebaseAuthService.registration(data)
 
-            val key = Key(value = registrationInfo.id)
+            val key = Key(userId = registrationInfo.id)
             repository.save(user, key)
         }
     }
