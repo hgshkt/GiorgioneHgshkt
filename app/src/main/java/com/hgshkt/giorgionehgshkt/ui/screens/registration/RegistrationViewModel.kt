@@ -2,7 +2,6 @@ package com.hgshkt.giorgionehgshkt.ui.screens.registration
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import com.hgshkt.data.authentication.registration.RegistrationServiceImpl
 import com.hgshkt.domain.model.User
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -25,8 +24,7 @@ class RegistrationViewModel @Inject constructor(
             password = password.value,
         )
         registrationUseCases.createUserUseCase.execute(
-            user = user,
-            registrationService = RegistrationServiceImpl()
+            user = user
         )
     }
 }

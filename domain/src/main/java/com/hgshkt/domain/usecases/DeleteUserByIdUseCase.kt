@@ -1,11 +1,16 @@
 package com.hgshkt.domain.usecases
 
+import com.hgshkt.domain.repository.user.Key
+import com.hgshkt.domain.repository.user.LocalUserRepository
 import com.hgshkt.domain.repository.user.UserRepository
 
 class DeleteUserByIdUseCase(
-    private val repository: UserRepository
+    private val remoteRepository: UserRepository,
+    private val localRepository: LocalUserRepository
 ) {
     fun execute() {
-        repository.delete()
+        val id = localRepository.getCurrentUserAuthId()
+        val key = Key(userId = id)
+        remoteRepository.delete(key = key)
     }
 }
