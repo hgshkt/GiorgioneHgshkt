@@ -66,12 +66,12 @@ object AppModule {
     }
 
     @Provides
-    fun provideCreatingUseCases(uploadPublicationUseCase: UploadPublicationUseCase): CreatingUseCases{
+    fun provideCreatingUseCases(uploadPublicationUseCase: UploadPublicationUseCase): CreatingUseCases {
         return CreatingUseCases(uploadPublicationUseCase)
     }
 
     @Provides
-    fun provideUploadPublicationUseCase(repository: PublicationRepository): UploadPublicationUseCase{
+    fun provideUploadPublicationUseCase(repository: PublicationRepository): UploadPublicationUseCase {
         return UploadPublicationUseCase(repository)
     }
 
@@ -81,7 +81,7 @@ object AppModule {
     }
 
     @Provides
-    fun providePublicationStorage():PublicationStorage{
+    fun providePublicationStorage(): PublicationStorage {
         return FirebasePublicationStorage()
     }
 
@@ -99,7 +99,7 @@ object AppModule {
     fun provideRegistrationService(
         authService: AuthenticationService,
         repository: UserRepository
-    ):RegistrationService{
+    ): RegistrationService {
         return RegistrationServiceImpl(authService, repository)
     }
 
@@ -140,6 +140,11 @@ object AppModule {
     }
 
     @Provides
+    fun provideSignOutUseCase(loginService: LoginService): SignOutUseCase {
+        return SignOutUseCase(loginService)
+    }
+
+    @Provides
     fun providesDeleteUserByIdUseCase(
         remoteRepository: UserRepository,
         localUserRepository: LocalUserRepository
@@ -149,7 +154,8 @@ object AppModule {
 
     @Provides
     fun provideLocalUserRepository(@ApplicationContext appContext: Context): LocalUserRepository {
-        val sharedPreferences = appContext.getSharedPreferences("userRepository", Context.MODE_PRIVATE)
+        val sharedPreferences =
+            appContext.getSharedPreferences("userRepository", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         return SharedPreferenceRepository(sharedPreferences, editor)
     }

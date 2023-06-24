@@ -13,6 +13,7 @@ import com.hgshkt.giorgionehgshkt.ui.screens.creating.CreatingScreen
 import com.hgshkt.giorgionehgshkt.ui.screens.login.LoginScreen
 import com.hgshkt.giorgionehgshkt.ui.screens.profile.ProfileScreen
 import com.hgshkt.giorgionehgshkt.ui.screens.registration.RegistrationScreen
+import com.hgshkt.giorgionehgshkt.ui.screens.settings.SettingsScreen
 
 private const val currentUserId = "l0rCBGOi9cb8p7XC9noRU7GCYMD2"
 
@@ -39,5 +40,6 @@ fun AppNavHost(
         }
         composable(MainScreen.Profile.route) { ProfileScreen(currentUserId) }
         composable(MainScreen.Creating.route) { CreatingScreen() }
+        composable(MainScreen.Settings.route) { SettingsScreen() }
     }
 }
