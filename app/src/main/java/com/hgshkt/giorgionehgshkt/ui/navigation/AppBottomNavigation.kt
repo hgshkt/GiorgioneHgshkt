@@ -48,7 +48,7 @@ fun AppBottomNavigation(
             }
         }
     ) { innerPadding ->
-        AppNavHost(
+        MainNavHost(
             modifier = Modifier.padding(innerPadding),
             navController = navController
         )

@@ -13,7 +13,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RegistrationScreen() {
+fun RegistrationScreen(
+
+) {
     val viewModel = hiltViewModel<RegistrationViewModel>()
 
     val name = viewModel.name
@@ -28,21 +30,27 @@ fun RegistrationScreen() {
             label = { Text(text = "Name") },
             modifier = Modifier.fillMaxWidth()
         )
+
         Spacer(modifier = Modifier.height(16.dp))
+
         OutlinedTextField(
             value = id.value,
             onValueChange = { id.value = it },
             label = { Text(text = "ID") },
             modifier = Modifier.fillMaxWidth()
         )
+
         Spacer(modifier = Modifier.height(16.dp))
+
         OutlinedTextField(
             value = email.value,
             onValueChange = { email.value = it },
             label = { Text(text = "Email") },
             modifier = Modifier.fillMaxWidth()
         )
+
         Spacer(modifier = Modifier.height(16.dp))
+
         OutlinedTextField(
             value = password.value,
             onValueChange = { password.value = it },
@@ -50,7 +58,9 @@ fun RegistrationScreen() {
             visualTransformation = PasswordVisualTransformation(),
             modifier = Modifier.fillMaxWidth()
         )
+
         Spacer(modifier = Modifier.height(16.dp))
+
         Button(onClick = {
             viewModel.registration()
         }, modifier = Modifier.fillMaxWidth()) {

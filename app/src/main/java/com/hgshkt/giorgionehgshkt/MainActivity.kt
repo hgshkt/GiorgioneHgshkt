@@ -3,10 +3,12 @@ package com.hgshkt.giorgionehgshkt
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.navigation.compose.rememberNavController
 import com.hgshkt.domain.authentication.LoginService
 import com.hgshkt.giorgionehgshkt.ui.navigation.AppBottomNavigation
-import com.hgshkt.giorgionehgshkt.ui.navigation.AppNavHost
+import com.hgshkt.giorgionehgshkt.ui.navigation.AuthNavHost
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -18,10 +20,14 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             val navController = rememberNavController()
-            if (loginService.isSigned()) {
+            val isSigned = remember {
+                mutableStateOf(loginService.isSigned())
+            }
+
+            if (isSigned.value) {
                 AppBottomNavigation(navController)
             } else {
-                AppNavHost(navController = navController)
+                AuthNavHost(navController = navController)
             }
         }
     }
