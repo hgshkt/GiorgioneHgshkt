@@ -6,7 +6,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.hgshkt.giorgionehgshkt.ui.navigation.screens.AuthScreen
-import com.hgshkt.giorgionehgshkt.ui.navigation.screens.Screen
 import com.hgshkt.giorgionehgshkt.ui.screens.login.LoginScreen
 import com.hgshkt.giorgionehgshkt.ui.screens.registration.RegistrationScreen
 
@@ -21,10 +20,10 @@ fun AuthNavHost(
         startDestination = startDestination,
         modifier = modifier
     ) {
-        composable(Screen.Login.route) {
+        composable(AuthScreen.Login.route) {
             LoginScreen()
         }
-        composable(Screen.Registration.route) {
+        composable(AuthScreen.Registration.route) {
             RegistrationScreen()
         }
     }
