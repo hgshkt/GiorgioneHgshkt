@@ -14,27 +14,32 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
+import com.hgshkt.giorgionehgshkt.ui.navigation.graphs.Graph
+import com.hgshkt.giorgionehgshkt.ui.navigation.screens.AuthScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginScreen() {
+fun LoginScreen(
+    navController: NavHostController
+) {
 
     val viewModel = hiltViewModel<LoginViewModel>()
 
-    var email = viewModel.email.value
-    var password = viewModel.password.value
+    val email = viewModel.email
+    val password = viewModel.password
 
     Column(modifier = Modifier.padding(16.dp)) {
         OutlinedTextField(
-            value = email,
-            onValueChange = { email = it },
+            value = email.value,
+            onValueChange = { email.value = it },
             label = { Text(text = "Email") },
             modifier = Modifier.fillMaxWidth()
         )
         Spacer(modifier = Modifier.height(16.dp))
         OutlinedTextField(
-            value = password,
-            onValueChange = { password = it },
+            value = password.value,
+            onValueChange = { password.value = it },
             label = { Text(text = "Password") },
             visualTransformation = PasswordVisualTransformation(),
             modifier = Modifier.fillMaxWidth()
@@ -42,8 +47,14 @@ fun LoginScreen() {
         Spacer(modifier = Modifier.height(16.dp))
         Button(onClick = {
             viewModel.login()
+            navController.navigate(Graph.MAIN)
         }, modifier = Modifier.fillMaxWidth()) {
             Text(text = "Login")
+        }
+        Button(onClick = {
+            navController.navigate(AuthScreen.Registration.route)
+        }, modifier = Modifier.fillMaxWidth()) {
+            Text(text = "Register")
         }
     }
 }

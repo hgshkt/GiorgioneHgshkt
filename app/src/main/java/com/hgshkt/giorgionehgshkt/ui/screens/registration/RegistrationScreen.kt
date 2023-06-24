@@ -10,11 +10,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
+import com.hgshkt.giorgionehgshkt.ui.navigation.graphs.Graph
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RegistrationScreen(
-
+    navController: NavHostController
 ) {
     val viewModel = hiltViewModel<RegistrationViewModel>()
 
@@ -63,6 +65,7 @@ fun RegistrationScreen(
 
         Button(onClick = {
             viewModel.registration()
+            navController.navigate(Graph.MAIN)
         }, modifier = Modifier.fillMaxWidth()) {
             Text(text = "Register")
         }

@@ -9,9 +9,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 
 @Composable
-fun SettingsScreen() {
+fun SettingsScreen(navController: NavHostController) {
 
     val viewModel = hiltViewModel<SettingsViewModel>()
 
@@ -22,7 +23,7 @@ fun SettingsScreen() {
     ) {
         Button(
             onClick = {
-                 viewModel.deleteAccount()
+                viewModel.deleteAccount()
             }
         ) {
             Text("Delete my Account")
@@ -30,7 +31,7 @@ fun SettingsScreen() {
 
         Button(
             onClick = {
-                 viewModel.exit()
+                viewModel.exit()
             }
         ) {
             Text("Exit")
