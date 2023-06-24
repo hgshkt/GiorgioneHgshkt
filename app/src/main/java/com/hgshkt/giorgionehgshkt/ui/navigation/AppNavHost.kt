@@ -20,11 +20,12 @@ private const val currentUserId = "l0rCBGOi9cb8p7XC9noRU7GCYMD2"
 @Composable
 fun AppNavHost(
     modifier: Modifier = Modifier,
-    navController: NavHostController
+    navController: NavHostController,
+    startDestination: String = MainScreen.Profile.route
 ) {
     NavHost(
         navController = navController,
-        startDestination = MainScreen.Profile.route,
+        startDestination = startDestination,
         modifier = modifier
     ) {
         navigation(

@@ -10,6 +10,8 @@ class FirebaseAuthenticationService(
     private val auth: FirebaseAuth
 ): AuthenticationService {
 
+    override fun isSigned() = auth.currentUser != null
+
     override suspend fun registration(data: RegistrationData): RegistrationInfo {
         val id = auth.createUserWithEmailAndPassword(data.email, data.password)
             .await().user!!.uid

@@ -10,6 +10,12 @@ class FirebaseLoginService(
     private val auth: AuthenticationService
 ): LoginService {
 
+
+    override fun isSigned(): Boolean {
+        return auth.isSigned()
+    }
+
+
     override fun login(data: LoginData) {
         val loginData = mapToAuthLoginData(data)
         auth.login(loginData)
