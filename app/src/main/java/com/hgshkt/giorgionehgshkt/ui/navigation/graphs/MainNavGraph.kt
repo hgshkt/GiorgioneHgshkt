@@ -12,7 +12,10 @@ import com.hgshkt.giorgionehgshkt.ui.screens.settings.SettingsScreen
 private val currentUserId = ""
 
 @Composable
-fun MainNavGraph(navController: NavHostController) {
+fun MainNavGraph(
+    navGraphController: NavHostController,
+    navController: NavHostController
+) {
     NavHost(
         navController = navController,
         route = Graph.MAIN,
@@ -20,6 +23,6 @@ fun MainNavGraph(navController: NavHostController) {
     ) {
         composable(MainScreen.Profile.route) { ProfileScreen(currentUserId) }
         composable(MainScreen.Creating.route) { CreatingScreen() }
-        composable(MainScreen.Settings.route) { SettingsScreen(navController) }
+        composable(MainScreen.Settings.route) { SettingsScreen(navGraphController) }
     }
 }

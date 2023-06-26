@@ -25,6 +25,7 @@ private val items = listOf(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppBottomNavigation(
+    navGraphController: NavHostController,
     navController: NavHostController = rememberNavController()
 ) {
     Scaffold(
@@ -51,6 +52,7 @@ fun AppBottomNavigation(
         }
     ) { innerPadding ->
         MainNavGraph(
+            navGraphController = navGraphController,
             navController = navController
         )
     }

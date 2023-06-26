@@ -10,9 +10,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import com.hgshkt.giorgionehgshkt.ui.navigation.graphs.Graph
 
 @Composable
-fun SettingsScreen(navController: NavHostController) {
+fun SettingsScreen(navGraphController: NavHostController) {
 
     val viewModel = hiltViewModel<SettingsViewModel>()
 
@@ -24,6 +25,7 @@ fun SettingsScreen(navController: NavHostController) {
         Button(
             onClick = {
                 viewModel.deleteAccount()
+                navGraphController.navigate(Graph.AUTH)
             }
         ) {
             Text("Delete my Account")
@@ -32,6 +34,7 @@ fun SettingsScreen(navController: NavHostController) {
         Button(
             onClick = {
                 viewModel.exit()
+                navGraphController.navigate(Graph.AUTH)
             }
         ) {
             Text("Exit")
