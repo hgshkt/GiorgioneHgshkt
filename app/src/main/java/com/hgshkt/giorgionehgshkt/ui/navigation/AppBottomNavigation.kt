@@ -15,7 +15,7 @@ import androidx.navigation.compose.rememberNavController
 import com.hgshkt.giorgionehgshkt.ui.navigation.graphs.MainNavGraph
 import com.hgshkt.giorgionehgshkt.ui.navigation.screens.MainScreen
 
-private val items = listOf(
+private val screens = listOf(
     MainScreen.Profile,
     MainScreen.Creating,
     MainScreen.Settings
@@ -33,7 +33,7 @@ fun AppBottomNavigation(
             BottomNavigation {
                 val navBackStackEntry = navController.currentBackStackEntryAsState()
                 val currentDestination = navBackStackEntry.value?.destination
-                items.forEach { screen ->
+                screens.forEach { screen ->
                     BottomNavigationItem(
                         icon = { Icon(screen.icon, contentDescription = null) },
                         selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
