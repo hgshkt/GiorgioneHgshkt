@@ -15,13 +15,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.layout.ContentScale
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
 fun SearchScreen() {
 
-    // val viewModel =
+    val viewModel = viewModel<SearchViewModel>()
 
-    // val text: MutableState<String> =// viewModel.text
+    val text = viewModel.text
 
     Column(
         modifier = Modifier.fillMaxSize()
