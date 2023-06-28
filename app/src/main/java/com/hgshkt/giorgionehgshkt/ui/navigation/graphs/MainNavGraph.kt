@@ -10,6 +10,7 @@ import com.hgshkt.giorgionehgshkt.ui.navigation.screens.MainScreen
 import com.hgshkt.giorgionehgshkt.ui.navigation.screens.ParamType
 import com.hgshkt.giorgionehgshkt.ui.screens.creating.CreatingScreen
 import com.hgshkt.giorgionehgshkt.ui.screens.profile.ProfileScreen
+import com.hgshkt.giorgionehgshkt.ui.screens.search.SearchScreen
 import com.hgshkt.giorgionehgshkt.ui.screens.settings.SettingsScreen
 
 @Composable
@@ -37,5 +38,6 @@ fun MainNavGraph(
         }
         composable(MainScreen.Creating.route) { CreatingScreen() }
         composable(MainScreen.Settings.route) { SettingsScreen(navGraphController) }
+        composable(MainScreen.Search.route) { SearchScreen(navController) }
     }
 }
