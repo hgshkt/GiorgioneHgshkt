@@ -6,7 +6,7 @@ sealed class Screen(
     fun withParams(params: List<Param>):String {
         var result = "$route?"
         params.forEach {
-            result += "${it.type}=${it.value}"
+            result += "${it.type.name}=${it.value}"
         }
         return result
     }

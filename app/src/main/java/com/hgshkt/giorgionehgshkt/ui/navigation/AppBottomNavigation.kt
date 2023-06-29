@@ -16,9 +16,9 @@ import com.hgshkt.giorgionehgshkt.ui.navigation.graphs.MainNavGraph
 import com.hgshkt.giorgionehgshkt.ui.navigation.screens.MainScreen
 
 private val screens = listOf(
-    MainScreen.Profile,
+    MainScreen.Search,
     MainScreen.Creating,
-    MainScreen.Settings,
+    MainScreen.Profile,
     MainScreen.Settings
 )
 

@@ -24,11 +24,11 @@ fun MainNavGraph(
         startDestination = MainScreen.Settings.route
     ) {
         composable(
-            route = MainScreen.Profile.route,
+            route = "${MainScreen.Profile.route}?${ParamType.UserId.name}={${ParamType.UserId.name}}",
             arguments = listOf(
-                navArgument(ParamType.UserId.name) {
+                navArgument(name = ParamType.UserId.name) {
                     type = NavType.StringType
-                    nullable = true
+                    nullable = false
                 }
             )
         ) {
