@@ -10,7 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import com.hgshkt.giorgionehgshkt.ui.navigation.graphs.Graph
+import com.hgshkt.giorgionehgshkt.ui.navigation.graphs.root.Graph
 
 @Composable
 fun SettingsScreen(navGraphController: NavHostController) {

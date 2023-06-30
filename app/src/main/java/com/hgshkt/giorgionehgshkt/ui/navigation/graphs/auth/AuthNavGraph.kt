@@ -1,9 +1,10 @@
-package com.hgshkt.giorgionehgshkt.ui.navigation.graphs
+package com.hgshkt.giorgionehgshkt.ui.navigation.graphs.auth
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import com.hgshkt.giorgionehgshkt.ui.navigation.graphs.root.Graph
 import com.hgshkt.giorgionehgshkt.ui.navigation.screens.AuthScreen
 import com.hgshkt.giorgionehgshkt.ui.screens.login.LoginScreen
 import com.hgshkt.giorgionehgshkt.ui.screens.registration.RegistrationScreen

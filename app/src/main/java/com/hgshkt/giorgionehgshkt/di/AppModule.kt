@@ -18,6 +18,7 @@ import com.hgshkt.domain.authentication.RegistrationService
 import com.hgshkt.domain.repository.publication.PublicationRepository
 import com.hgshkt.domain.repository.user.LocalUserRepository
 import com.hgshkt.domain.repository.user.UserRepository
+import com.hgshkt.domain.usecases.CheckAuthenticationUseCase
 import com.hgshkt.domain.usecases.CreateUserUseCase
 import com.hgshkt.domain.usecases.DeleteUserByIdUseCase
 import com.hgshkt.domain.usecases.GetUserByIdUseCase
@@ -25,6 +26,7 @@ import com.hgshkt.domain.usecases.GetUserPublicationsUseCase
 import com.hgshkt.domain.usecases.LoginUseCase
 import com.hgshkt.domain.usecases.SignOutUseCase
 import com.hgshkt.domain.usecases.UploadPublicationUseCase
+import com.hgshkt.giorgionehgshkt.ui.navigation.graphs.root.RootNavigationGraphUseCases
 import com.hgshkt.giorgionehgshkt.ui.screens.creating.CreatingUseCases
 import com.hgshkt.giorgionehgshkt.ui.screens.login.LoginUseCases
 import com.hgshkt.giorgionehgshkt.ui.screens.profile.ProfileUseCases
@@ -158,5 +160,17 @@ object AppModule {
             appContext.getSharedPreferences("userRepository", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         return SharedPreferenceRepository(sharedPreferences, editor)
+    }
+
+    @Provides
+    fun provideRootNavigationGraphUseCases(
+        checkAuthenticationUseCase: CheckAuthenticationUseCase
+    ): RootNavigationGraphUseCases {
+        return RootNavigationGraphUseCases(checkAuthenticationUseCase)
+    }
+
+    @Provides
+    fun provideCheckAuthenticationUseCase(loginService: LoginService): CheckAuthenticationUseCase {
+        return CheckAuthenticationUseCase(loginService)
     }
 }

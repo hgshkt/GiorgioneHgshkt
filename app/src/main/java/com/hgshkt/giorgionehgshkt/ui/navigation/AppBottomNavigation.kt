@@ -12,7 +12,7 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.hgshkt.giorgionehgshkt.ui.navigation.graphs.MainNavGraph
+import com.hgshkt.giorgionehgshkt.ui.navigation.graphs.main.MainNavGraph
 import com.hgshkt.giorgionehgshkt.ui.navigation.screens.MainScreen
 
 private val screens = listOf(

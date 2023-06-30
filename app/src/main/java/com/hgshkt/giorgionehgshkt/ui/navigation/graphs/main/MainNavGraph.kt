@@ -1,4 +1,4 @@
-package com.hgshkt.giorgionehgshkt.ui.navigation.graphs
+package com.hgshkt.giorgionehgshkt.ui.navigation.graphs.main
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
@@ -6,6 +6,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.hgshkt.giorgionehgshkt.ui.navigation.graphs.root.Graph
 import com.hgshkt.giorgionehgshkt.ui.navigation.screens.MainScreen
 import com.hgshkt.giorgionehgshkt.ui.navigation.screens.ParamType
 import com.hgshkt.giorgionehgshkt.ui.screens.creating.CreatingScreen

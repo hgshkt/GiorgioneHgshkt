@@ -15,7 +15,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import com.hgshkt.giorgionehgshkt.ui.navigation.graphs.Graph
+import com.hgshkt.giorgionehgshkt.ui.navigation.graphs.root.Graph
 import com.hgshkt.giorgionehgshkt.ui.navigation.screens.AuthScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
