@@ -7,6 +7,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.*
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -29,6 +30,8 @@ fun AppBottomNavigation(
     navGraphController: NavHostController,
     navController: NavHostController = rememberNavController()
 ) {
+    val viewModel = hiltViewModel<BottomNavigationViewModel>()
+
     Scaffold(
         bottomBar = {
             BottomNavigation {
@@ -39,7 +42,9 @@ fun AppBottomNavigation(
                         icon = { Icon(screen.icon, contentDescription = null) },
                         selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
                         onClick = {
-                            navController.navigate(screen.route) {
+                            val path = viewModel.getPath(screen)
+
+                            navController.navigate(path) {
                                 popUpTo(navController.graph.findStartDestination().id) {
                                     saveState = true
                                 }
