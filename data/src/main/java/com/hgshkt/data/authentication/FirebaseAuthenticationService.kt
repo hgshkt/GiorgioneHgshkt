@@ -10,6 +10,12 @@ class FirebaseAuthenticationService(
     private val auth: FirebaseAuth
 ): AuthenticationService {
 
+    override var currentUserId: String = ""
+        private set
+        get() {
+            return auth.currentUser?.uid ?: ""
+        }
+
     override fun isSigned() = auth.currentUser != null
 
     override suspend fun registration(data: RegistrationData): RegistrationInfo {
@@ -27,5 +33,6 @@ class FirebaseAuthenticationService(
 
     override fun login(data: AuthLoginData) {
         auth.signInWithEmailAndPassword(data.email, data.password)
+        currentUserId = auth.currentUser!!.uid
     }
 }

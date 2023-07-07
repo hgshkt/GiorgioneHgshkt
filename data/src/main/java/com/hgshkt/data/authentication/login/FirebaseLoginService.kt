@@ -4,6 +4,7 @@ import com.hgshkt.data.authentication.AuthenticationService
 import com.hgshkt.data.authentication.models.AuthLoginData
 import com.hgshkt.domain.authentication.LoginService
 import com.hgshkt.domain.authentication.models.LoginData
+import com.hgshkt.domain.repository.user.Key
 
 
 class FirebaseLoginService(
@@ -16,9 +17,11 @@ class FirebaseLoginService(
     }
 
 
-    override fun login(data: LoginData) {
+    override fun login(data: LoginData): Key {
         val loginData = mapToAuthLoginData(data)
         auth.login(loginData)
+
+        return Key(authId = auth.currentUserId)
     }
 
     override fun signOut() {

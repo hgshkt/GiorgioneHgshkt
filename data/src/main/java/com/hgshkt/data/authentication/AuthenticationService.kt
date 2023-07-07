@@ -6,6 +6,8 @@ import com.hgshkt.data.authentication.models.RegistrationInfo
 
 interface AuthenticationService {
 
+    val currentUserId: String
+
     fun isSigned(): Boolean
 
     suspend fun registration(data: RegistrationData): RegistrationInfo

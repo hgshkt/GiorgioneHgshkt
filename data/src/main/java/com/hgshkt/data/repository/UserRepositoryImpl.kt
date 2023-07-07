@@ -12,16 +12,16 @@ class UserRepositoryImpl(
 
     override fun save(user: User, key: Key) {
         val storageUser = mapToStorage(user)
-        storage.save(storageUser, key.userId)
+        storage.save(storageUser, key.authId)
     }
 
     override suspend fun get(key: Key): User {
-        val storageUser = storage.get(key.userId)
+        val storageUser = storage.get(key.authId)
         return mapToDomain(storageUser)
     }
 
     override fun delete(key: Key) {
-        storage.delete(key.userId)
+        storage.delete(key.authId)
     }
 
     private fun mapToDomain(storageUser: StorageUser): User {

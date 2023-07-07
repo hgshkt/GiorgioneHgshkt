@@ -20,7 +20,7 @@ class RegistrationServiceImpl(
             val data = getRegistrationDataByUser(user)
             val registrationInfo = authService.registration(data)
 
-            val key = Key(userId = registrationInfo.id)
+            val key = Key(authId = registrationInfo.id)
             repository.save(user, key)
         }
     }

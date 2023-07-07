@@ -21,7 +21,7 @@ import com.hgshkt.domain.repository.user.UserRepository
 import com.hgshkt.domain.usecases.CheckAuthenticationUseCase
 import com.hgshkt.domain.usecases.CreateUserUseCase
 import com.hgshkt.domain.usecases.DeleteUserByIdUseCase
-import com.hgshkt.domain.usecases.GetCurrentUserIdUseCase
+import com.hgshkt.domain.usecases.GetCurrentUserKeyUseCase
 import com.hgshkt.domain.usecases.GetUserByIdUseCase
 import com.hgshkt.domain.usecases.GetUserPublicationsUseCase
 import com.hgshkt.domain.usecases.LoginUseCase
@@ -50,8 +50,11 @@ object AppModule {
     }
 
     @Provides
-    fun provideLoginUseCase(loginService: LoginService): LoginUseCase {
-        return LoginUseCase(loginService)
+    fun provideLoginUseCase(
+        loginService: LoginService,
+        localUserRepository: LocalUserRepository
+    ): LoginUseCase {
+        return LoginUseCase(loginService, localUserRepository)
     }
 
     @Provides
@@ -177,12 +180,12 @@ object AppModule {
     }
 
     @Provides
-    fun provideBottomBarUseCases(getCurrentUserIdUseCase: GetCurrentUserIdUseCase): BottomBarUseCases {
-        return BottomBarUseCases(getCurrentUserIdUseCase)
+    fun provideBottomBarUseCases(getCurrentUserKeyUseCase: GetCurrentUserKeyUseCase): BottomBarUseCases {
+        return BottomBarUseCases(getCurrentUserKeyUseCase)
     }
 
     @Provides
-    fun provideGetCurrentUserIdUseCase(localUserRepository: LocalUserRepository): GetCurrentUserIdUseCase {
-        return GetCurrentUserIdUseCase(localUserRepository)
+    fun provideGetCurrentUserIdUseCase(localUserRepository: LocalUserRepository): GetCurrentUserKeyUseCase {
+        return GetCurrentUserKeyUseCase(localUserRepository)
     }
 }

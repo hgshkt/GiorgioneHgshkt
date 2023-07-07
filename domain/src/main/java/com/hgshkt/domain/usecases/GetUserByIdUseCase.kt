@@ -8,7 +8,7 @@ class GetUserByIdUseCase(
     private val repository: UserRepository
 ) {
     suspend fun execute(userId: String): User {
-        val key = Key(userId = userId)
+        val key = Key(authId = userId)
         return repository.get(key)
     }
 }

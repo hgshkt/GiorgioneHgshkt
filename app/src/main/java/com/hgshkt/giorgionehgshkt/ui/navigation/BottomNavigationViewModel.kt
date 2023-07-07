@@ -13,12 +13,14 @@ class BottomNavigationViewModel @Inject constructor(
 ) : ViewModel() {
 
     fun getPath(screen: MainScreen): String {
+        val key = useCases.getCurrentUserKeyUseCase.execute()
+
         return if (screen == MainScreen.Profile) {
             MainScreen.Profile.withParams(
                 listOf(
                     Param(
                         type = ParamType.UserId,
-                        value = useCases.getCurrentUserIdUseCase.execute()
+                        value = key.authId
                     )
                 )
             )

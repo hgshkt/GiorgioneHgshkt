@@ -1,11 +1,12 @@
 package com.hgshkt.domain.usecases
 
+import com.hgshkt.domain.repository.user.Key
 import com.hgshkt.domain.repository.user.LocalUserRepository
 
-class GetCurrentUserIdUseCase(
+class GetCurrentUserKeyUseCase(
     private val repository: LocalUserRepository
 ) {
-    fun execute(): String {
-        return repository.getCurrentUserAuthId()
+    fun execute(): Key {
+        return repository.getCurrentUserKey()
     }
 }
