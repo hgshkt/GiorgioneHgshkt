@@ -37,13 +37,13 @@ fun CreatingScreen() {
 
     val viewModel = hiltViewModel<CreatingViewModel>()
 
-    val url = viewModel.url
+    val loadedUri = viewModel.uri
     val text = viewModel.text
 
     val launcher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetContent()
     ) { uri: Uri? ->
-        url.value = uri.toString()
+        loadedUri.value = uri
     }
 
     Column(
