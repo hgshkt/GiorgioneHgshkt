@@ -9,6 +9,7 @@ import com.hgshkt.data.storage.publication.PublicationStorage
 import com.hgshkt.data.storage.user.FirebaseUserStorage
 import com.hgshkt.data.storage.user.UserStorage
 import com.hgshkt.domain.repository.publication.PublicationRepository
+import com.hgshkt.domain.repository.user.Key
 import com.hgshkt.domain.repository.user.LocalUserRepository
 import com.hgshkt.domain.repository.user.UserRepository
 import dagger.Module
@@ -16,13 +17,17 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Named
 
 @Module
 @InstallIn(SingletonComponent::class)
 object RepositoryModule {
     @Provides
-    fun providePublicationRepository(storage: PublicationStorage): PublicationRepository {
-        return PublicationRepositoryImpl(storage)
+    fun providePublicationRepository(
+        storage: PublicationStorage,
+        @Named("userKey") key: Key
+    ): PublicationRepository {
+        return PublicationRepositoryImpl(storage, key)
     }
 
     @Provides
