@@ -1,4 +1,4 @@
-package com.hgshkt.data.repository
+package com.hgshkt.data.repository.remote.user
 
 import com.hgshkt.data.storage.user.UserStorage
 import com.hgshkt.data.storage.user.models.StorageUser

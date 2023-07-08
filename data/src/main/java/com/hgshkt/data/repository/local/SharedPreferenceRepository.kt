@@ -1,4 +1,4 @@
-package com.hgshkt.data.repository
+package com.hgshkt.data.repository.local
 
 import android.content.SharedPreferences
 import com.hgshkt.domain.repository.user.Key

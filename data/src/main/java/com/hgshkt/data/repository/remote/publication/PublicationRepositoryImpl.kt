@@ -1,4 +1,4 @@
-package com.hgshkt.data.repository
+package com.hgshkt.data.repository.remote.publication
 
 import com.hgshkt.data.storage.publication.PublicationStorage
 import com.hgshkt.domain.model.Publication
