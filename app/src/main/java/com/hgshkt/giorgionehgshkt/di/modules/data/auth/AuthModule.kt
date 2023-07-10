@@ -1,4 +1,4 @@
-package com.hgshkt.giorgionehgshkt.di.modules.data
+package com.hgshkt.giorgionehgshkt.di.modules.data.auth
 
 import com.google.firebase.auth.FirebaseAuth
 import com.hgshkt.data.authentication.AuthenticationService

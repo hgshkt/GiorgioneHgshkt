@@ -9,10 +9,10 @@ import java.io.File
 class ImageRepositoryImpl(
     private val imageStorage: ImageStorage
 ): ImageRepository {
-    override suspend fun save(imageFile: File): ImageInfo {
+    override suspend fun save(imageFile: File, path: String): ImageInfo {
         val javaUri = imageFile.toURI()
         val androidUri = Uri.parse(javaUri.toString())
 
-        return imageStorage.save(androidUri)
+        return imageStorage.save(androidUri, path)
     }
 }

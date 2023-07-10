@@ -5,7 +5,5 @@ import com.hgshkt.domain.repository.image.ImageInfo
 
 
 interface ImageStorage {
-    suspend fun save(
-        uri: Uri
-    ): ImageInfo
+    suspend fun save(uri: Uri, path: String): ImageInfo
 }

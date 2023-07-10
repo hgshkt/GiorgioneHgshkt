@@ -3,8 +3,8 @@ package com.hgshkt.giorgionehgshkt.di.modules
 import com.hgshkt.domain.repository.user.Key
 import com.hgshkt.domain.repository.user.LocalUserRepository
 import com.hgshkt.giorgionehgshkt.di.modules.app.ScreensUseCasesModule
-import com.hgshkt.giorgionehgshkt.di.modules.data.AuthModule
-import com.hgshkt.giorgionehgshkt.di.modules.data.RepositoryModule
+import com.hgshkt.giorgionehgshkt.di.modules.data.auth.AuthModule
+import com.hgshkt.giorgionehgshkt.di.modules.data.repository.RepositoryModule
 import com.hgshkt.giorgionehgshkt.di.modules.domain.UseCaseModule
 import dagger.Module
 import dagger.Provides
@@ -16,12 +16,13 @@ import javax.inject.Named
     UseCaseModule::class,
     RepositoryModule::class,
     AuthModule::class,
-    ScreensUseCasesModule::class
+    ScreensUseCasesModule::class,
+    StringModule::class
 ])
 @InstallIn(SingletonComponent::class)
 object AppModule {
     @Provides
-    @Named("userKey")
+    @Named("currentUserKey")
     fun provideUserKey(localRepository: LocalUserRepository): Key {
         return localRepository.getCurrentUserKey()
     }

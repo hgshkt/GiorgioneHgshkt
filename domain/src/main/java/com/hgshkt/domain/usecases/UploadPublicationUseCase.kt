@@ -10,11 +10,12 @@ import java.io.File
 
 class UploadPublicationUseCase(
     private val publicationRepository: PublicationRepository,
-    private val imageRepository: ImageRepository
+    private val imageRepository: ImageRepository,
+    private val path: String
 ) {
     fun execute(imageFile: File, publication: Publication) {
         CoroutineScope(Dispatchers.IO).launch {
-            val uploadedImageInfo = imageRepository.save(imageFile)
+            val uploadedImageInfo = imageRepository.save(imageFile, path)
             publication.photoUrl = uploadedImageInfo.url
             publicationRepository.upload(publication)
         }

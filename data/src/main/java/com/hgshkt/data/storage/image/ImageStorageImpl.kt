@@ -8,10 +8,8 @@ import kotlinx.coroutines.tasks.await
 class ImageStorageImpl(
     private val reference: StorageReference
 ) : ImageStorage {
-    override suspend fun save(
-        uri: Uri
-    ): ImageInfo  {
-        val taskSnapshot = reference.putFile(uri).await()
+    override suspend fun save(uri: Uri, path: String): ImageInfo  {
+        val taskSnapshot = reference.child(path).putFile(uri).await()
         val url = taskSnapshot.storage.downloadUrl.await().toString()
 
         return ImageInfo(url)

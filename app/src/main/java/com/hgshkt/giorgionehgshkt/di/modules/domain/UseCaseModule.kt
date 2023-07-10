@@ -2,6 +2,7 @@ package com.hgshkt.giorgionehgshkt.di.modules.domain
 
 import com.hgshkt.domain.authentication.LoginService
 import com.hgshkt.domain.authentication.RegistrationService
+import com.hgshkt.domain.repository.image.ImageRepository
 import com.hgshkt.domain.repository.publication.PublicationRepository
 import com.hgshkt.domain.repository.user.LocalUserRepository
 import com.hgshkt.domain.repository.user.UserRepository
@@ -18,6 +19,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Named
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -32,9 +34,15 @@ object UseCaseModule {
 
     @Provides
     fun provideUploadPublicationUseCase(
-        repository: PublicationRepository
+        publicationRepository: PublicationRepository,
+        imageRepository: ImageRepository,
+        @Named("publicationImagesPath") path: String
     ): UploadPublicationUseCase {
-        return UploadPublicationUseCase(repository)
+        return UploadPublicationUseCase(
+            publicationRepository = publicationRepository,
+            imageRepository = imageRepository,
+            path = path
+        )
     }
 
     @Provides
