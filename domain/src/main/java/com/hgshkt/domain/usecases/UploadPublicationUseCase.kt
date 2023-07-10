@@ -3,6 +3,9 @@ package com.hgshkt.domain.usecases
 import com.hgshkt.domain.model.Publication
 import com.hgshkt.domain.repository.image.ImageRepository
 import com.hgshkt.domain.repository.publication.PublicationRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.io.File
 
 class UploadPublicationUseCase(
@@ -10,8 +13,10 @@ class UploadPublicationUseCase(
     private val imageRepository: ImageRepository
 ) {
     fun execute(imageFile: File, publication: Publication) {
-        val uploadedImageInfo = imageRepository.save(imageFile)
-        publication.photoUrl = uploadedImageInfo.url
-        publicationRepository.upload(publication)
+        CoroutineScope(Dispatchers.IO).launch {
+            val uploadedImageInfo = imageRepository.save(imageFile)
+            publication.photoUrl = uploadedImageInfo.url
+            publicationRepository.upload(publication)
+        }
     }
 }

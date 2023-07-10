@@ -9,7 +9,7 @@ import java.io.File
 class ImageRepositoryImpl(
     private val imageStorage: ImageStorage
 ): ImageRepository {
-    override fun save(imageFile: File): ImageInfo {
+    override suspend fun save(imageFile: File): ImageInfo {
         val javaUri = imageFile.toURI()
         val androidUri = Uri.parse(javaUri.toString())
 
