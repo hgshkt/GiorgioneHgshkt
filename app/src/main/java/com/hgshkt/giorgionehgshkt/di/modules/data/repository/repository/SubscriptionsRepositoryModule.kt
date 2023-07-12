@@ -9,6 +9,9 @@ import com.hgshkt.data.storage.subscription.IngoingSubscriptionsStorage
 import com.hgshkt.data.storage.subscription.OutgoingSubscriptionsStorage
 import com.hgshkt.domain.repository.subscriptions.SubscriptionsRepository
 import com.hgshkt.domain.repository.user.Key
+import com.hgshkt.giorgionehgshkt.di.modules.Name
+import com.hgshkt.giorgionehgshkt.di.modules.Name.ingoingSubscriptionsReference
+import com.hgshkt.giorgionehgshkt.di.modules.Name.outgoingSubscriptionsReference
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,11 +21,14 @@ import javax.inject.Named
 @Module
 @InstallIn(SingletonComponent::class)
 object SubscriptionsRepositoryModule {
+
+    private const val outgoingSubscriptionsPath = "outgoingSubscriptions"
+    private const val ingoingSubscriptionsPath = "ingoingSubscriptions"
     @Provides
     fun provideSubscriptionsRepository(
         outgoingSubscriptionsStorage: OutgoingSubscriptionsStorage,
         ingoingSubscriptionsStorage: IngoingSubscriptionsStorage,
-        @Named("currentUserKey") currentUserKey: Key
+        @Named(Name.currentUserKey) currentUserKey: Key
     ): SubscriptionsRepository {
         return SubscriptionsRepositoryImpl(
             outgoingSubscriptionsStorage = outgoingSubscriptionsStorage,
@@ -33,27 +39,27 @@ object SubscriptionsRepositoryModule {
 
     @Provides
     fun provideOutgoingSubscriptionsStorage(
-        @Named("outgoingSubscriptionsReference") reference: DatabaseReference
+        @Named(outgoingSubscriptionsReference) reference: DatabaseReference
     ): OutgoingSubscriptionsStorage {
         return FirebaseOutgoingSubscriptionsStorage(reference)
     }
 
     @Provides
     fun provideIngoingSubscriptionsStorage(
-        @Named("ingoingSubscriptionsReference") reference: DatabaseReference
+        @Named(ingoingSubscriptionsReference) reference: DatabaseReference
     ): IngoingSubscriptionsStorage {
         return FirebaseIngoingSubscriptionsStorage(reference)
     }
 
     @Provides
-    @Named("outgoingSubscriptionsReference")
+    @Named(outgoingSubscriptionsReference)
     fun provideOutgoingSubscriptionsReference(): DatabaseReference {
-        return FirebaseDatabase.getInstance().getReference("outgoingSubscriptions")
+        return FirebaseDatabase.getInstance().getReference(outgoingSubscriptionsPath)
     }
 
     @Provides
-    @Named("ingoingSubscriptionsReference")
+    @Named(ingoingSubscriptionsReference)
     fun provideIngoingSubscriptionsReference(): DatabaseReference {
-        return FirebaseDatabase.getInstance().getReference("ingoingSubscriptions")
+        return FirebaseDatabase.getInstance().getReference(ingoingSubscriptionsPath)
     }
 }

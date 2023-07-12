@@ -2,6 +2,7 @@ package com.hgshkt.giorgionehgshkt.di.modules
 
 import com.hgshkt.domain.repository.user.Key
 import com.hgshkt.domain.repository.user.LocalUserRepository
+import com.hgshkt.giorgionehgshkt.di.modules.Name.currentUserKey
 import com.hgshkt.giorgionehgshkt.di.modules.app.ScreensUseCasesModule
 import com.hgshkt.giorgionehgshkt.di.modules.data.auth.AuthModule
 import com.hgshkt.giorgionehgshkt.di.modules.data.repository.RepositoryModule
@@ -22,7 +23,7 @@ import javax.inject.Named
 @InstallIn(SingletonComponent::class)
 object AppModule {
     @Provides
-    @Named("currentUserKey")
+    @Named(currentUserKey)
     fun provideUserKey(localRepository: LocalUserRepository): Key {
         return localRepository.getCurrentUserKey()
     }

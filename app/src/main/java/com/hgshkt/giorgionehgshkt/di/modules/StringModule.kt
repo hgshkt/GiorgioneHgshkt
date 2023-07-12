@@ -1,6 +1,7 @@
 package com.hgshkt.giorgionehgshkt.di.modules
 
 import com.hgshkt.domain.repository.user.Key
+import com.hgshkt.giorgionehgshkt.di.modules.Name.currentUserKey
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,7 +14,7 @@ object StringModule {
     @Provides
     @Named("publicationImagesPath")
     fun providePublicationImagesPath(
-        @Named("currentUserKey") key: Key
+        @Named(currentUserKey) key: Key
     ): String {
         return key.authId
     }

@@ -17,6 +17,8 @@ import dagger.hilt.components.SingletonComponent
 @Module
 @InstallIn(SingletonComponent::class)
 object UserRepositoryModule {
+
+    private const val userRepository = "userRepository"
     @Provides
     fun provideUserRepository(storage: UserStorage): UserRepository {
         return UserRepositoryImpl(storage)
@@ -30,7 +32,7 @@ object UserRepositoryModule {
     @Provides
     fun provideLocalUserRepository(@ApplicationContext appContext: Context): LocalUserRepository {
         val sharedPreferences =
-            appContext.getSharedPreferences("userRepository", Context.MODE_PRIVATE)
+            appContext.getSharedPreferences(userRepository, Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         return SharedPreferenceRepository(sharedPreferences, editor)
     }
