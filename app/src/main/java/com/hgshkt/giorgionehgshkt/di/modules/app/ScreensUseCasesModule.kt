@@ -8,6 +8,7 @@ import com.hgshkt.domain.usecases.GetUserByIdUseCase
 import com.hgshkt.domain.usecases.GetUserPublicationsUseCase
 import com.hgshkt.domain.usecases.LoginUseCase
 import com.hgshkt.domain.usecases.SignOutUseCase
+import com.hgshkt.domain.usecases.SubscribeByKeyUseCase
 import com.hgshkt.domain.usecases.UploadPublicationUseCase
 import com.hgshkt.giorgionehgshkt.ui.navigation.BottomBarUseCases
 import com.hgshkt.giorgionehgshkt.ui.navigation.graphs.root.RootNavigationGraphUseCases
@@ -49,9 +50,14 @@ object ScreensUseCasesModule {
     @Provides
     fun provideProfileUseCases(
         getUserByIdUseCase: GetUserByIdUseCase,
-        getUserPublicationsUseCase: GetUserPublicationsUseCase
+        getUserPublicationsUseCase: GetUserPublicationsUseCase,
+        subscribeByKeyUseCase: SubscribeByKeyUseCase
     ): ProfileUseCases {
-        return ProfileUseCases(getUserByIdUseCase, getUserPublicationsUseCase)
+        return ProfileUseCases(
+            getUserByIdUseCase = getUserByIdUseCase,
+            getUserPublicationsUseCase = getUserPublicationsUseCase,
+            subscribeByKeyUseCase = subscribeByKeyUseCase
+        )
     }
 
     @Provides

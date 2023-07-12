@@ -10,12 +10,13 @@ import kotlinx.coroutines.launch
 
 class SubscriptionsRepositoryImpl(
     private val outgoingSubscriptionsStorage: OutgoingSubscriptionsStorage,
-    private val ingoingSubscriptionsStorage: IngoingSubscriptionsStorage
+    private val ingoingSubscriptionsStorage: IngoingSubscriptionsStorage,
+    private val currentUserKey: Key
 ): SubscriptionsRepository {
-    override fun subscribe(subscriber: Key, publisher: Key) {
+    override fun subscribe(publisher: Key) {
         CoroutineScope(Dispatchers.IO).launch {
-            outgoingSubscriptionsStorage.put(subscriber = subscriber, publisher = publisher)
-            ingoingSubscriptionsStorage.put(subscriber = subscriber, publisher = publisher)
+            outgoingSubscriptionsStorage.put(subscriber = currentUserKey, publisher = publisher)
+            ingoingSubscriptionsStorage.put(subscriber = currentUserKey,publisher = publisher)
         }
     }
 }

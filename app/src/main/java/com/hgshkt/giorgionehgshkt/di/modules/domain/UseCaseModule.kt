@@ -4,6 +4,7 @@ import com.hgshkt.domain.authentication.LoginService
 import com.hgshkt.domain.authentication.RegistrationService
 import com.hgshkt.domain.repository.image.ImageRepository
 import com.hgshkt.domain.repository.publication.PublicationRepository
+import com.hgshkt.domain.repository.subscriptions.SubscriptionsRepository
 import com.hgshkt.domain.repository.user.LocalUserRepository
 import com.hgshkt.domain.repository.user.UserRepository
 import com.hgshkt.domain.usecases.CheckAuthenticationUseCase
@@ -14,6 +15,7 @@ import com.hgshkt.domain.usecases.GetUserByIdUseCase
 import com.hgshkt.domain.usecases.GetUserPublicationsUseCase
 import com.hgshkt.domain.usecases.LoginUseCase
 import com.hgshkt.domain.usecases.SignOutUseCase
+import com.hgshkt.domain.usecases.SubscribeByKeyUseCase
 import com.hgshkt.domain.usecases.UploadPublicationUseCase
 import dagger.Module
 import dagger.Provides
@@ -89,5 +91,12 @@ object UseCaseModule {
         localUserRepository: LocalUserRepository
     ): GetCurrentUserKeyUseCase {
         return GetCurrentUserKeyUseCase(localUserRepository)
+    }
+
+    @Provides
+    fun provideSubscribeByKeyUseCase(
+        repository: SubscriptionsRepository
+    ): SubscribeByKeyUseCase {
+        return SubscribeByKeyUseCase(repository)
     }
 }
