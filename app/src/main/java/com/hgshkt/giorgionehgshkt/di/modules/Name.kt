@@ -5,4 +5,5 @@ object Name {
 
     const val outgoingSubscriptionsReference = "outgoingSubscriptionsReference"
     const val ingoingSubscriptionsReference = "ingoingSubscriptionsReference"
+    const val publicationReference = "publicationReference"
 }

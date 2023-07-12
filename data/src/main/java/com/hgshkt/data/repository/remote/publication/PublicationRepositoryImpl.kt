@@ -7,12 +7,11 @@ import com.hgshkt.domain.repository.publication.PublicationRepository
 import com.hgshkt.domain.repository.user.Key
 
 class PublicationRepositoryImpl(
-    private val storage: PublicationStorage,
-    private val currentUserKey: Key
+    private val storage: PublicationStorage
 ) : PublicationRepository {
 
-    override suspend fun getUserPublications(userId: String): List<Publication> {
-        return storage.getUserPublications(userId) ?: listOf()
+    override suspend fun getUserPublications(key: Key): List<Publication> {
+        return storage.getUserPublications(key) ?: listOf()
     }
 
     override fun upload(publication: Publication) {
@@ -20,7 +19,6 @@ class PublicationRepositoryImpl(
 
         storage.uploadPublication(
             publication = publication,
-            currentUserKey = currentUserKey,
             publicationKey = publicationKey
         )
     }

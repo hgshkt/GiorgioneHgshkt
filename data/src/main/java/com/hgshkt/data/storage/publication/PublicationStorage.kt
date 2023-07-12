@@ -5,11 +5,10 @@ import com.hgshkt.domain.model.Publication
 import com.hgshkt.domain.repository.user.Key
 
 interface PublicationStorage {
-    suspend fun getUserPublications(userId: String): List<Publication>?
+    suspend fun getUserPublications(key: Key): List<Publication>?
 
     fun uploadPublication(
         publication: Publication,
-        currentUserKey: Key,
         publicationKey: PublicationKey
     )
 }

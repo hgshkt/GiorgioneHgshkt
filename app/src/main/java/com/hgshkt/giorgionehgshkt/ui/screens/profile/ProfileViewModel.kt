@@ -29,7 +29,8 @@ class ProfileViewModel @AssistedInject constructor(
             launch {
                 user.value = profileUseCases.getUserByIdUseCase.execute(userId)
             }
-            _publications.addAll(profileUseCases.getUserPublicationsUseCase.execute(userId))
+            val key = Key(userId)
+            _publications.addAll(profileUseCases.getUserPublicationsUseCase.execute(key))
         }
     }
 
