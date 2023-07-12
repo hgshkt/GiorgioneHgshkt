@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.hgshkt.domain.model.Publication
 import com.hgshkt.domain.model.User
+import com.hgshkt.domain.repository.user.Key
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
@@ -30,6 +31,11 @@ class ProfileViewModel @AssistedInject constructor(
             }
             _publications.addAll(profileUseCases.getUserPublicationsUseCase.execute(userId))
         }
+    }
+
+    fun subscribe() {
+        val key = Key(userId)
+        profileUseCases.subscribeByKeyUseCase.execute(key)
     }
 
     @AssistedFactory
