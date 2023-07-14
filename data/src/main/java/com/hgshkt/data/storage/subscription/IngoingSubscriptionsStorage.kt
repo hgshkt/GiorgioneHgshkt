@@ -1,9 +1,9 @@
 package com.hgshkt.data.storage.subscription
 
-import com.hgshkt.domain.repository.user.Key
+import com.hgshkt.data.storage.keys.StorageUserKey
 
 interface IngoingSubscriptionsStorage {
-    suspend fun put(subscriber: Key, publisher: Key)
+    suspend fun put(subscriber: StorageUserKey, publisher: StorageUserKey)
 
-    suspend fun get(publisher: Key): List<Key>
+    suspend fun get(publisher: StorageUserKey): List<StorageUserKey>
 }
