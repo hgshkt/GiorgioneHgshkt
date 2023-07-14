@@ -1,6 +1,7 @@
 package com.hgshkt.data.repository.remote.publication
 
 import com.hgshkt.data.repository.remote.publication.model.PublicationKey
+import com.hgshkt.data.storage.keys.StorageUserKey
 import com.hgshkt.data.storage.publication.PublicationStorage
 import com.hgshkt.domain.model.Publication
 import com.hgshkt.domain.repository.publication.PublicationRepository
@@ -11,7 +12,8 @@ class PublicationRepositoryImpl(
 ) : PublicationRepository {
 
     override suspend fun getUserPublications(key: Key): List<Publication> {
-        return storage.getUserPublications(key) ?: listOf()
+        val storageKey = mapDomainToStorage(key)
+        return storage.getUserPublications(storageKey) ?: listOf()
     }
 
     override fun upload(publication: Publication) {
@@ -21,5 +23,9 @@ class PublicationRepositoryImpl(
             publication = publication,
             publicationKey = publicationKey
         )
+    }
+
+    private fun mapDomainToStorage(key: Key): StorageUserKey {
+        return StorageUserKey(key.authId)
     }
 }
