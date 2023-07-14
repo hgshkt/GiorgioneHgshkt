@@ -1,29 +1,29 @@
 package com.hgshkt.data.storage.subscription
 
 import com.google.firebase.database.DatabaseReference
-import com.hgshkt.domain.repository.user.Key
+import com.hgshkt.data.storage.keys.StorageUserKey
 import kotlinx.coroutines.tasks.await
 
 class FirebaseIngoingSubscriptionsStorage(
     private val ref: DatabaseReference
 ): IngoingSubscriptionsStorage {
-    override suspend fun put(subscriber: Key, publisher: Key) {
+    override suspend fun put(subscriber: StorageUserKey, publisher: StorageUserKey) {
         val ingoingSubscriptions = get(publisher).toMutableList()
         ingoingSubscriptions.add(subscriber)
 
-        val idList = ingoingSubscriptions.map { it.authId }
+        val idList = ingoingSubscriptions.map { it.value }
 
-        ref.child(publisher.authId).setValue(idList)
+        ref.child(publisher.value).setValue(idList)
     }
 
-    override suspend fun get(publisher: Key): List<Key> {
-        val keyValues = ref.child(publisher.authId)
+    override suspend fun get(publisher: StorageUserKey): List<StorageUserKey> {
+        val keyValues = ref.child(publisher.value)
             .get()
             .await()
             .getValue(listOf<String>()::class.java) ?: listOf()
 
         return keyValues.map {
-            Key(it)
+            StorageUserKey(it)
         }
     }
 }
