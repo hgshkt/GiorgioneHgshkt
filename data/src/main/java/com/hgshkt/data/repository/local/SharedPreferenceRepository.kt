@@ -1,24 +1,17 @@
 package com.hgshkt.data.repository.local
 
-import android.content.SharedPreferences
+import com.hgshkt.data.storage.local.LocalStorage
 import com.hgshkt.domain.repository.user.Key
 import com.hgshkt.domain.repository.user.LocalUserRepository
 
-
 class SharedPreferenceRepository(
-    private val sharedPreferences: SharedPreferences,
-    private val editor: SharedPreferences.Editor
-): LocalUserRepository {
-
-    private val PREF_AUTH_ID_KEY = "auth id"
+    private val localStorage: LocalStorage
+) : LocalUserRepository {
     override fun getCurrentUserKey(): Key {
-        val authId = sharedPreferences.getString(PREF_AUTH_ID_KEY, "def value")!!
-        return Key(authId = authId)
+        return localStorage.getCurrentUserKey()
     }
 
     override fun saveCurrentUserKey(key: Key) {
-        val authId = key.authId
-        editor.putString(PREF_AUTH_ID_KEY, authId)
-        editor.apply()
+        localStorage.saveCurrentUserKey(key)
     }
 }

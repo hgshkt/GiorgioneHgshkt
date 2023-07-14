@@ -5,6 +5,8 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.hgshkt.data.repository.local.SharedPreferenceRepository
 import com.hgshkt.data.repository.remote.user.UserRepositoryImpl
+import com.hgshkt.data.storage.local.LocalStorage
+import com.hgshkt.data.storage.local.SharedPreferenceStorage
 import com.hgshkt.data.storage.user.FirebaseUserStorage
 import com.hgshkt.data.storage.user.UserStorage
 import com.hgshkt.domain.repository.user.LocalUserRepository
@@ -42,10 +44,15 @@ object UserRepositoryModule {
     }
 
     @Provides
-    fun provideLocalUserRepository(@ApplicationContext appContext: Context): LocalUserRepository {
+    fun provideLocalUserRepository(storage: LocalStorage): LocalUserRepository {
+        return SharedPreferenceRepository(storage)
+    }
+
+    @Provides
+    fun provideLocalStorage(@ApplicationContext appContext: Context): LocalStorage {
         val sharedPreferences =
             appContext.getSharedPreferences(userRepository, Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
-        return SharedPreferenceRepository(sharedPreferences, editor)
+        return SharedPreferenceStorage(sharedPreferences, editor)
     }
 }
