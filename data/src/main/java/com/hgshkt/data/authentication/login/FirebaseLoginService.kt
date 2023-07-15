@@ -5,9 +5,10 @@ import com.hgshkt.data.authentication.models.AuthLoginData
 import com.hgshkt.domain.authentication.LoginService
 import com.hgshkt.domain.authentication.models.LoginData
 import com.hgshkt.domain.repository.user.Key
+import javax.inject.Inject
 
 
-class FirebaseLoginService(
+class FirebaseLoginService @Inject constructor(
     private val auth: AuthenticationService
 ): LoginService {
 

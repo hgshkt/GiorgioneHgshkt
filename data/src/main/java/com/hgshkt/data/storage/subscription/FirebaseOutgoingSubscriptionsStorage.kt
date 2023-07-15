@@ -3,8 +3,9 @@ package com.hgshkt.data.storage.subscription
 import com.google.firebase.database.DatabaseReference
 import com.hgshkt.data.storage.keys.StorageUserKey
 import kotlinx.coroutines.tasks.await
+import javax.inject.Inject
 
-class FirebaseOutgoingSubscriptionsStorage(
+class FirebaseOutgoingSubscriptionsStorage @Inject constructor(
     private val ref: DatabaseReference
 ) : OutgoingSubscriptionsStorage {
 

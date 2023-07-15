@@ -7,7 +7,6 @@ import com.hgshkt.data.storage.subscription.FirebaseIngoingSubscriptionsStorage
 import com.hgshkt.data.storage.subscription.FirebaseOutgoingSubscriptionsStorage
 import com.hgshkt.data.storage.subscription.IngoingSubscriptionsStorage
 import com.hgshkt.data.storage.subscription.OutgoingSubscriptionsStorage
-import com.hgshkt.domain.repository.subscriptions.SubscriptionsRepository
 import com.hgshkt.domain.repository.user.Key
 import com.hgshkt.giorgionehgshkt.di.modules.Name
 import com.hgshkt.giorgionehgshkt.di.modules.Name.ingoingSubscriptionsReference
@@ -25,11 +24,11 @@ object SubscriptionsRepositoryModule {
     private const val outgoingSubscriptionsPath = "outgoingSubscriptions"
     private const val ingoingSubscriptionsPath = "ingoingSubscriptions"
     @Provides
-    fun provideSubscriptionsRepository(
+    fun provideSubscriptionsRepositoryImpl(
         outgoingSubscriptionsStorage: OutgoingSubscriptionsStorage,
         ingoingSubscriptionsStorage: IngoingSubscriptionsStorage,
         @Named(Name.currentUserKey) currentUserKey: Key
-    ): SubscriptionsRepository {
+    ): SubscriptionsRepositoryImpl {
         return SubscriptionsRepositoryImpl(
             outgoingSubscriptionsStorage = outgoingSubscriptionsStorage,
             ingoingSubscriptionsStorage = ingoingSubscriptionsStorage,
@@ -38,16 +37,16 @@ object SubscriptionsRepositoryModule {
     }
 
     @Provides
-    fun provideOutgoingSubscriptionsStorage(
+    fun provideFirebaseOutgoingSubscriptionsStorage(
         @Named(outgoingSubscriptionsReference) reference: DatabaseReference
-    ): OutgoingSubscriptionsStorage {
+    ): FirebaseOutgoingSubscriptionsStorage {
         return FirebaseOutgoingSubscriptionsStorage(reference)
     }
 
     @Provides
-    fun provideIngoingSubscriptionsStorage(
+    fun provideFirebaseIngoingSubscriptionsStorage(
         @Named(ingoingSubscriptionsReference) reference: DatabaseReference
-    ): IngoingSubscriptionsStorage {
+    ): FirebaseIngoingSubscriptionsStorage {
         return FirebaseIngoingSubscriptionsStorage(reference)
     }
 

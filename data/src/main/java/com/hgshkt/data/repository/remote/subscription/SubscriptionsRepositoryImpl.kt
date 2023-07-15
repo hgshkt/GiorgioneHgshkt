@@ -13,16 +13,23 @@ class SubscriptionsRepositoryImpl(
     private val outgoingSubscriptionsStorage: OutgoingSubscriptionsStorage,
     private val ingoingSubscriptionsStorage: IngoingSubscriptionsStorage,
     private val currentUserKey: Key
-): SubscriptionsRepository {
+) : SubscriptionsRepository {
     override fun subscribe(publisher: Key) {
         val subscriberStorageKey = mapDomainToStorage(currentUserKey)
         val publisherStorageKey = mapDomainToStorage(publisher)
 
         CoroutineScope(Dispatchers.IO).launch {
-            outgoingSubscriptionsStorage.put(subscriber = subscriberStorageKey, publisher = publisherStorageKey)
-            ingoingSubscriptionsStorage.put(subscriber = subscriberStorageKey,publisher = publisherStorageKey)
+            outgoingSubscriptionsStorage.put(
+                subscriber = subscriberStorageKey,
+                publisher = publisherStorageKey
+            )
+            ingoingSubscriptionsStorage.put(
+                subscriber = subscriberStorageKey,
+                publisher = publisherStorageKey
+            )
         }
     }
+
     private fun mapDomainToStorage(key: Key): StorageUserKey {
         return StorageUserKey(key.authId)
     }

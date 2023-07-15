@@ -6,8 +6,9 @@ import com.hgshkt.data.storage.user.models.StorageUser
 import com.hgshkt.domain.model.User
 import com.hgshkt.domain.repository.user.Key
 import com.hgshkt.domain.repository.user.UserRepository
+import javax.inject.Inject
 
-class UserRepositoryImpl(
+class UserRepositoryImpl @Inject constructor(
     private val storage: UserStorage
 ) : UserRepository {
 

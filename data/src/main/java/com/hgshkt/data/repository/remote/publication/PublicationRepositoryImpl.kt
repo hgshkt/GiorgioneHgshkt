@@ -6,8 +6,9 @@ import com.hgshkt.data.storage.publication.PublicationStorage
 import com.hgshkt.domain.model.Publication
 import com.hgshkt.domain.repository.publication.PublicationRepository
 import com.hgshkt.domain.repository.user.Key
+import javax.inject.Inject
 
-class PublicationRepositoryImpl(
+class PublicationRepositoryImpl @Inject constructor(
     private val storage: PublicationStorage
 ) : PublicationRepository {
 

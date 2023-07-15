@@ -1,6 +1,7 @@
 package com.hgshkt.giorgionehgshkt.di.modules.data.repository
 
 import com.hgshkt.giorgionehgshkt.di.modules.data.repository.image.ImageRepositoryModule
+import com.hgshkt.giorgionehgshkt.di.modules.data.repository.local.LocalRepositoryModule
 import com.hgshkt.giorgionehgshkt.di.modules.data.repository.publication.PublicationRepositoryModule
 import com.hgshkt.giorgionehgshkt.di.modules.data.repository.repository.SubscriptionsRepositoryModule
 import com.hgshkt.giorgionehgshkt.di.modules.data.repository.user.UserRepositoryModule
@@ -12,7 +13,8 @@ import dagger.hilt.components.SingletonComponent
     UserRepositoryModule::class,
     PublicationRepositoryModule::class,
     ImageRepositoryModule::class,
-    SubscriptionsRepositoryModule::class
+    SubscriptionsRepositoryModule::class,
+    LocalRepositoryModule::class
 ])
 @InstallIn(SingletonComponent::class)
 object RepositoryModule

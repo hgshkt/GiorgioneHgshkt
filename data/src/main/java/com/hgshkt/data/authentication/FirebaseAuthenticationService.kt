@@ -5,8 +5,9 @@ import com.hgshkt.data.authentication.models.AuthLoginData
 import com.hgshkt.data.authentication.models.RegistrationData
 import com.hgshkt.data.authentication.models.RegistrationInfo
 import kotlinx.coroutines.tasks.await
+import javax.inject.Inject
 
-class FirebaseAuthenticationService(
+class FirebaseAuthenticationService @Inject constructor(
     private val auth: FirebaseAuth
 ): AuthenticationService {
 

@@ -9,8 +9,9 @@ import com.hgshkt.domain.repository.user.UserRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class RegistrationServiceImpl(
+class RegistrationServiceImpl @Inject constructor(
     private val authService: AuthenticationService,
     private val repository: UserRepository
 ) : RegistrationService {

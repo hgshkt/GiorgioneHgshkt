@@ -5,8 +5,9 @@ import com.hgshkt.data.storage.image.ImageStorage
 import com.hgshkt.domain.repository.image.ImageInfo
 import com.hgshkt.domain.repository.image.ImageRepository
 import java.io.File
+import javax.inject.Inject
 
-class ImageRepositoryImpl(
+class ImageRepositoryImpl @Inject constructor(
     private val imageStorage: ImageStorage
 ): ImageRepository {
     override suspend fun save(imageFile: File, path: String): ImageInfo {
