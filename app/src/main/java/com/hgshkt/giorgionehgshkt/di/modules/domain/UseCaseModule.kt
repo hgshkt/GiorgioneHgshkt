@@ -5,6 +5,7 @@ import com.hgshkt.domain.authentication.RegistrationService
 import com.hgshkt.domain.repository.image.ImageRepository
 import com.hgshkt.domain.repository.publication.PublicationRepository
 import com.hgshkt.domain.repository.subscriptions.SubscriptionsRepository
+import com.hgshkt.domain.repository.user.Key
 import com.hgshkt.domain.repository.user.LocalUserRepository
 import com.hgshkt.domain.repository.user.UserRepository
 import com.hgshkt.domain.usecases.CheckAuthenticationUseCase
@@ -17,6 +18,7 @@ import com.hgshkt.domain.usecases.LoginUseCase
 import com.hgshkt.domain.usecases.SignOutUseCase
 import com.hgshkt.domain.usecases.SubscribeByKeyUseCase
 import com.hgshkt.domain.usecases.UploadPublicationUseCase
+import com.hgshkt.giorgionehgshkt.di.modules.Name
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -38,12 +40,12 @@ object UseCaseModule {
     fun provideUploadPublicationUseCase(
         publicationRepository: PublicationRepository,
         imageRepository: ImageRepository,
-        @Named("publicationImagesPath") path: String
+        @Named(Name.currentUserKey) currentUserKey: Key
     ): UploadPublicationUseCase {
         return UploadPublicationUseCase(
             publicationRepository = publicationRepository,
             imageRepository = imageRepository,
-            path = path
+            currentUserKey = currentUserKey
         )
     }
 
