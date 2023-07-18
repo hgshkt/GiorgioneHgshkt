@@ -5,25 +5,17 @@ import com.hgshkt.data.authentication.models.RegistrationData
 import com.hgshkt.domain.authentication.RegistrationService
 import com.hgshkt.domain.repository.user.Key
 import com.hgshkt.domain.model.User
-import com.hgshkt.domain.repository.user.UserRepository
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class RegistrationServiceImpl @Inject constructor(
-    private val authService: AuthenticationService,
-    private val repository: UserRepository
+    private val authService: AuthenticationService
 ) : RegistrationService {
 
-    override fun registration(user: User) {
-        CoroutineScope(Dispatchers.IO).launch {
-            val data = getRegistrationDataByUser(user)
-            val registrationInfo = authService.registration(data)
+    override suspend fun registration(user: User): Key {
+        val data = getRegistrationDataByUser(user)
+        val registrationInfo = authService.registration(data)
 
-            val key = Key(authId = registrationInfo.id)
-            repository.save(user, key)
-        }
+        return Key(authId = registrationInfo.id)
     }
 
     private fun getRegistrationDataByUser(user: User): RegistrationData {

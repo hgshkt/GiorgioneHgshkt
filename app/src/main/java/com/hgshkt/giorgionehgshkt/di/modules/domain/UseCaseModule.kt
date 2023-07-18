@@ -49,9 +49,15 @@ object UseCaseModule {
 
     @Provides
     fun provideCreateUserUseCase(
-        registrationService: RegistrationService
+        registrationService: RegistrationService,
+        localUserRepository: LocalUserRepository,
+        remoteUserRepository: UserRepository
     ): CreateUserUseCase {
-        return CreateUserUseCase(registrationService)
+        return CreateUserUseCase(
+            registrationService = registrationService,
+            localUserRepository = localUserRepository,
+            remoteUserRepository = remoteUserRepository
+        )
     }
 
     @Provides
