@@ -29,6 +29,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import coil.compose.rememberImagePainter
 import com.hgshkt.giorgionehgshkt.R
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -86,7 +87,10 @@ fun CreatingScreen() {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(
-                painter = painterResource(id = R.drawable.add_photo_gallery),
+                painter = if (loadedUri.value == Uri.EMPTY)
+                    painterResource(id = R.drawable.add_photo_gallery)
+                else
+                    rememberImagePainter(loadedUri.value),
                 contentDescription = "Upload image",
                 modifier = Modifier
                     .fillMaxWidth(0.8f)
