@@ -5,7 +5,7 @@ import com.hgshkt.domain.authentication.RegistrationService
 import com.hgshkt.domain.repository.image.ImageRepository
 import com.hgshkt.domain.repository.publication.PublicationRepository
 import com.hgshkt.domain.repository.subscriptions.SubscriptionsRepository
-import com.hgshkt.domain.repository.user.Key
+import com.hgshkt.domain.data_model.Key
 import com.hgshkt.domain.repository.user.LocalUserRepository
 import com.hgshkt.domain.repository.user.UserRepository
 import com.hgshkt.domain.usecases.CheckAuthenticationUseCase

@@ -3,7 +3,7 @@ package com.hgshkt.data.authentication.registration
 import com.hgshkt.data.authentication.AuthenticationService
 import com.hgshkt.data.authentication.models.RegistrationData
 import com.hgshkt.domain.authentication.RegistrationService
-import com.hgshkt.domain.repository.user.Key
+import com.hgshkt.domain.data_model.Key
 import com.hgshkt.domain.model.User
 import javax.inject.Inject
 

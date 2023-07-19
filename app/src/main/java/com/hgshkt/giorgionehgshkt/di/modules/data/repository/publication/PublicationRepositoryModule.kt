@@ -3,7 +3,7 @@ package com.hgshkt.giorgionehgshkt.di.modules.data.repository.publication
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.hgshkt.data.storage.publication.FirebasePublicationStorage
-import com.hgshkt.domain.repository.user.Key
+import com.hgshkt.domain.data_model.Key
 import com.hgshkt.giorgionehgshkt.di.modules.Name
 import com.hgshkt.giorgionehgshkt.di.modules.Name.publicationReference
 import dagger.Module

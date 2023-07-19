@@ -4,7 +4,7 @@ import com.hgshkt.data.storage.keys.StorageUserKey
 import com.hgshkt.data.storage.user.UserStorage
 import com.hgshkt.data.storage.user.models.StorageUser
 import com.hgshkt.domain.model.User
-import com.hgshkt.domain.repository.user.Key
+import com.hgshkt.domain.data_model.Key
 import com.hgshkt.domain.repository.user.UserRepository
 import javax.inject.Inject
 

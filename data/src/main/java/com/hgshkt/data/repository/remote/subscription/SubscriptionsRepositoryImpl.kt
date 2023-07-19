@@ -4,7 +4,7 @@ import com.hgshkt.data.storage.keys.StorageUserKey
 import com.hgshkt.data.storage.subscription.IngoingSubscriptionsStorage
 import com.hgshkt.data.storage.subscription.OutgoingSubscriptionsStorage
 import com.hgshkt.domain.repository.subscriptions.SubscriptionsRepository
-import com.hgshkt.domain.repository.user.Key
+import com.hgshkt.domain.data_model.Key
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

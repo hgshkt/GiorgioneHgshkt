@@ -1,5 +1,6 @@
 package com.hgshkt.domain.repository.user
 
+import com.hgshkt.domain.data_model.Key
 import com.hgshkt.domain.model.User
 
 interface UserRepository {

@@ -1,7 +1,7 @@
 package com.hgshkt.domain.usecases
 
 import com.hgshkt.domain.repository.subscriptions.SubscriptionsRepository
-import com.hgshkt.domain.repository.user.Key
+import com.hgshkt.domain.data_model.Key
 
 class SubscribeByKeyUseCase(
     private val repository: SubscriptionsRepository

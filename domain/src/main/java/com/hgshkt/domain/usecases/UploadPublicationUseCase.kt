@@ -1,23 +1,28 @@
 package com.hgshkt.domain.usecases
 
+import com.hgshkt.domain.data_model.Key
+import com.hgshkt.domain.data_model.PublicationDownloadData
 import com.hgshkt.domain.model.Publication
 import com.hgshkt.domain.repository.image.ImageRepository
 import com.hgshkt.domain.repository.publication.PublicationRepository
-import com.hgshkt.domain.repository.user.Key
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.io.File
 
 class UploadPublicationUseCase(
     private val publicationRepository: PublicationRepository,
     private val imageRepository: ImageRepository,
     private val currentUserKey: Key
 ) {
-    fun execute(imageFile: File, publication: Publication) {
+    fun execute(data: PublicationDownloadData) {
         CoroutineScope(Dispatchers.IO).launch {
-            val uploadedImageInfo = imageRepository.save(imageFile, currentUserKey)
-            publication.photoUrl = uploadedImageInfo.url
+            val uploadedImageInfo = imageRepository.save(data, currentUserKey)
+
+            val publication = Publication(
+                photoUrl = uploadedImageInfo.url,
+                text = data.description,
+                time = data.time
+            )
             publicationRepository.upload(publication)
         }
     }

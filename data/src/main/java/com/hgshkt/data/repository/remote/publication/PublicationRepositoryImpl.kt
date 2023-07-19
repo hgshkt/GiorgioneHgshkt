@@ -5,7 +5,7 @@ import com.hgshkt.data.storage.keys.StorageUserKey
 import com.hgshkt.data.storage.publication.PublicationStorage
 import com.hgshkt.domain.model.Publication
 import com.hgshkt.domain.repository.publication.PublicationRepository
-import com.hgshkt.domain.repository.user.Key
+import com.hgshkt.domain.data_model.Key
 import javax.inject.Inject
 
 class PublicationRepositoryImpl @Inject constructor(

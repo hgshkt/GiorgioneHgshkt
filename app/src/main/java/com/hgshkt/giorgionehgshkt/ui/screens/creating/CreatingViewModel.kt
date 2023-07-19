@@ -3,9 +3,8 @@ package com.hgshkt.giorgionehgshkt.ui.screens.creating
 import android.net.Uri
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import com.hgshkt.domain.model.Publication
+import com.hgshkt.domain.data_model.PublicationDownloadData
 import dagger.hilt.android.lifecycle.HiltViewModel
-import java.io.File
 import java.lang.System.currentTimeMillis
 import javax.inject.Inject
 
@@ -18,16 +17,12 @@ class CreatingViewModel @Inject constructor(
     val uri = mutableStateOf(Uri.EMPTY)
 
     fun uploadPublication() {
-        val path = uri.value.path ?: "image not selected" // change to notification
-
-        val publication = Publication(
-            text = text.value,
+        val data = PublicationDownloadData(
+            uriString = uri.value.toString(),
+            description = text.value,
             time = currentTimeMillis()
         )
-        creatingUseCases.uploadPublicationUseCase.execute(
-            imageFile = File(path),
-            publication = publication
-        )
+        creatingUseCases.uploadPublicationUseCase.execute(data)
     }
 
     fun close() {

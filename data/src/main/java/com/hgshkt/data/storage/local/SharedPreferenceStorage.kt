@@ -1,7 +1,7 @@
 package com.hgshkt.data.storage.local
 
 import android.content.SharedPreferences
-import com.hgshkt.domain.repository.user.Key
+import com.hgshkt.domain.data_model.Key
 
 class SharedPreferenceStorage(
     private val sharedPreferences: SharedPreferences,

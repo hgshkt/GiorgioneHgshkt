@@ -4,7 +4,7 @@ import com.hgshkt.data.authentication.AuthenticationService
 import com.hgshkt.data.authentication.models.AuthLoginData
 import com.hgshkt.domain.authentication.LoginService
 import com.hgshkt.domain.authentication.models.LoginData
-import com.hgshkt.domain.repository.user.Key
+import com.hgshkt.domain.data_model.Key
 import javax.inject.Inject
 
 

@@ -1,6 +1,6 @@
 package com.hgshkt.giorgionehgshkt.di.modules
 
-import com.hgshkt.domain.repository.user.Key
+import com.hgshkt.domain.data_model.Key
 import com.hgshkt.domain.repository.user.LocalUserRepository
 import com.hgshkt.giorgionehgshkt.di.modules.Name.currentUserKey
 import com.hgshkt.giorgionehgshkt.di.modules.app.ScreensUseCasesModule

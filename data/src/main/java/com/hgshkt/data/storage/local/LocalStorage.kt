@@ -1,6 +1,6 @@
 package com.hgshkt.data.storage.local
 
-import com.hgshkt.domain.repository.user.Key
+import com.hgshkt.domain.data_model.Key
 
 interface LocalStorage {
     fun getCurrentUserKey(): Key

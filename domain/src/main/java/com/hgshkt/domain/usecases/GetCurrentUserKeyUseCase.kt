@@ -1,6 +1,6 @@
 package com.hgshkt.domain.usecases
 
-import com.hgshkt.domain.repository.user.Key
+import com.hgshkt.domain.data_model.Key
 import com.hgshkt.domain.repository.user.LocalUserRepository
 
 class GetCurrentUserKeyUseCase(
