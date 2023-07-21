@@ -1,7 +1,7 @@
 package com.hgshkt.domain.usecases
 
-import com.hgshkt.domain.data_model.Key
-import com.hgshkt.domain.data_model.PublicationDownloadData
+import com.hgshkt.domain.model.dataModel.Key
+import com.hgshkt.domain.model.dataModel.PublicationDownloadData
 import com.hgshkt.domain.model.Publication
 import com.hgshkt.domain.repository.image.ImageRepository
 import com.hgshkt.domain.repository.publication.PublicationRepository

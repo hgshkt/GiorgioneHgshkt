@@ -4,14 +4,13 @@ import com.hgshkt.data.authentication.AuthenticationService
 import com.hgshkt.data.authentication.models.AuthLoginData
 import com.hgshkt.domain.authentication.LoginService
 import com.hgshkt.domain.authentication.models.LoginData
-import com.hgshkt.domain.data_model.Key
+import com.hgshkt.domain.model.dataModel.Key
 import javax.inject.Inject
 
 
 class FirebaseLoginService @Inject constructor(
     private val auth: AuthenticationService
-): LoginService {
-
+) : LoginService {
 
     override fun isSigned(): Boolean {
         return auth.isSigned()
@@ -19,7 +18,7 @@ class FirebaseLoginService @Inject constructor(
 
 
     override fun login(data: LoginData): Key {
-        val loginData = mapToAuthLoginData(data)
+        val loginData = data.toAuth()
         auth.login(loginData)
 
         return Key(authId = auth.currentUserId)
@@ -29,10 +28,8 @@ class FirebaseLoginService @Inject constructor(
         auth.signOut()
     }
 
-    private fun mapToAuthLoginData(data: LoginData): AuthLoginData {
-        return AuthLoginData(
-            email = data.email,
-            password = data.password
-        )
-    }
+    private fun LoginData.toAuth() = AuthLoginData(
+        email = email,
+        password = password
+    )
 }

@@ -1,6 +1,6 @@
 package com.hgshkt.giorgionehgshkt.di.modules
 
-import com.hgshkt.domain.data_model.Key
+import com.hgshkt.domain.model.dataModel.Key
 import com.hgshkt.giorgionehgshkt.di.modules.Name.currentUserKey
 import dagger.Module
 import dagger.Provides

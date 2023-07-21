@@ -1,6 +1,6 @@
 package com.hgshkt.giorgionehgshkt.di.modules.data.repository.local
 
-import com.hgshkt.data.repository.local.SharedPreferenceRepository
+import com.hgshkt.data.repository.local.LocalUserRepositoryImpl
 import com.hgshkt.data.storage.local.LocalStorage
 import com.hgshkt.data.storage.local.SharedPreferenceStorage
 import com.hgshkt.domain.repository.user.LocalUserRepository
@@ -16,7 +16,7 @@ abstract class LocalRepositoryBindingModule {
     @Binds
     @Singleton
     abstract fun bindLocalUserRepository(
-        sharedPreferenceRepository: SharedPreferenceRepository
+        localUserRepositoryImpl: LocalUserRepositoryImpl
     ): LocalUserRepository
 
     @Binds

@@ -4,7 +4,7 @@ import com.hgshkt.data.storage.keys.StorageUserKey
 import com.hgshkt.data.storage.subscription.IngoingSubscriptionsStorage
 import com.hgshkt.data.storage.subscription.OutgoingSubscriptionsStorage
 import com.hgshkt.domain.repository.subscriptions.SubscriptionsRepository
-import com.hgshkt.domain.data_model.Key
+import com.hgshkt.domain.model.dataModel.Key
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -15,8 +15,8 @@ class SubscriptionsRepositoryImpl(
     private val currentUserKey: Key
 ) : SubscriptionsRepository {
     override fun subscribe(publisher: Key) {
-        val subscriberStorageKey = mapDomainToStorage(currentUserKey)
-        val publisherStorageKey = mapDomainToStorage(publisher)
+        val subscriberStorageKey = currentUserKey.toStorage()
+        val publisherStorageKey = publisher.toStorage()
 
         CoroutineScope(Dispatchers.IO).launch {
             outgoingSubscriptionsStorage.put(
@@ -30,7 +30,5 @@ class SubscriptionsRepositoryImpl(
         }
     }
 
-    private fun mapDomainToStorage(key: Key): StorageUserKey {
-        return StorageUserKey(key.authId)
-    }
+    private fun Key.toStorage() = StorageUserKey(authId)
 }

@@ -5,7 +5,7 @@ import com.google.firebase.database.ktx.getValue
 import com.hgshkt.data.repository.remote.publication.model.PublicationKey
 import com.hgshkt.data.storage.keys.StorageUserKey
 import com.hgshkt.domain.model.Publication
-import com.hgshkt.domain.data_model.Key
+import com.hgshkt.domain.model.dataModel.Key
 import kotlinx.coroutines.tasks.await
 
 class FirebasePublicationStorage(

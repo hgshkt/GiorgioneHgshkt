@@ -5,7 +5,7 @@ import com.hgshkt.data.storage.keys.StorageUserKey
 import com.hgshkt.data.storage.publication.PublicationStorage
 import com.hgshkt.domain.model.Publication
 import com.hgshkt.domain.repository.publication.PublicationRepository
-import com.hgshkt.domain.data_model.Key
+import com.hgshkt.domain.model.dataModel.Key
 import javax.inject.Inject
 
 class PublicationRepositoryImpl @Inject constructor(
@@ -13,7 +13,7 @@ class PublicationRepositoryImpl @Inject constructor(
 ) : PublicationRepository {
 
     override suspend fun getUserPublications(key: Key): List<Publication> {
-        val storageKey = mapDomainToStorage(key)
+        val storageKey = key.toStorage()
         return storage.getUserPublications(storageKey) ?: listOf()
     }
 
@@ -26,7 +26,5 @@ class PublicationRepositoryImpl @Inject constructor(
         )
     }
 
-    private fun mapDomainToStorage(key: Key): StorageUserKey {
-        return StorageUserKey(key.authId)
-    }
+    private fun Key.toStorage() = StorageUserKey(authId)
 }

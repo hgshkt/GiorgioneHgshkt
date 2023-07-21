@@ -2,9 +2,9 @@ package com.hgshkt.data.repository.remote.image
 
 import android.net.Uri
 import com.hgshkt.data.storage.image.ImageStorage
-import com.hgshkt.domain.data_model.ImageInfo
-import com.hgshkt.domain.data_model.Key
-import com.hgshkt.domain.data_model.PublicationDownloadData
+import com.hgshkt.domain.model.dataModel.ImageInfo
+import com.hgshkt.domain.model.dataModel.Key
+import com.hgshkt.domain.model.dataModel.PublicationDownloadData
 import com.hgshkt.domain.repository.image.ImageRepository
 import javax.inject.Inject
 

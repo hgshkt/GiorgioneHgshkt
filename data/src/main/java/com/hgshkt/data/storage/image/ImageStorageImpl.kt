@@ -2,8 +2,8 @@ package com.hgshkt.data.storage.image
 
 import android.net.Uri
 import com.google.firebase.storage.StorageReference
-import com.hgshkt.domain.data_model.ImageInfo
-import com.hgshkt.domain.data_model.Key
+import com.hgshkt.domain.model.dataModel.ImageInfo
+import com.hgshkt.domain.model.dataModel.Key
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 

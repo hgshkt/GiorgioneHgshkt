@@ -3,7 +3,7 @@ package com.hgshkt.giorgionehgshkt.ui.screens.creating
 import android.net.Uri
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import com.hgshkt.domain.data_model.PublicationDownloadData
+import com.hgshkt.domain.model.dataModel.PublicationDownloadData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.lang.System.currentTimeMillis
 import javax.inject.Inject

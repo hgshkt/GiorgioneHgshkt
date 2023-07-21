@@ -4,7 +4,7 @@ import com.hgshkt.data.storage.keys.StorageUserKey
 import com.hgshkt.data.storage.user.UserStorage
 import com.hgshkt.data.storage.user.models.StorageUser
 import com.hgshkt.domain.model.User
-import com.hgshkt.domain.data_model.Key
+import com.hgshkt.domain.model.dataModel.Key
 import com.hgshkt.domain.repository.user.UserRepository
 import javax.inject.Inject
 
@@ -13,44 +13,37 @@ class UserRepositoryImpl @Inject constructor(
 ) : UserRepository {
 
     override fun save(user: User, key: Key) {
-        val storageUser = mapToStorage(user)
-        val storageKey = mapDomainKeyToStorageKey(key)
-
-        storage.save(storageUser, storageKey)
+        storage.save(user.toStorage(), key.toStorage())
     }
 
     override suspend fun get(key: Key): User {
-        val storageKey = mapDomainKeyToStorageKey(key)
-        val storageUser = storage.get(storageKey)
-        return mapToDomain(storageUser)
+        val storageUser = storage.get(key.toStorage())
+        return storageUser.toDomain()
     }
 
     override fun delete(key: Key) {
-        val storageKey = mapDomainKeyToStorageKey(key)
-        storage.delete(storageKey)
+        storage.delete(key.toStorage())
     }
 
-    private fun mapToDomain(storageUser: StorageUser): User {
+    private fun StorageUser.toDomain(): User {
         return User(
-            name = storageUser.name,
-            id = storageUser.id,
-            email = storageUser.email,
-            password = storageUser.password,
-            avatarUrl = storageUser.avatarUrl
+            name = name,
+            id = id,
+            email = email,
+            password = password,
+            avatarUrl = avatarUrl
         )
     }
 
-    private fun mapToStorage(user: User): StorageUser {
+    private fun User.toStorage(): StorageUser {
         return StorageUser(
-            name = user.name,
-            id = user.id,
-            email = user.email,
-            password = user.password,
-            avatarUrl = user.avatarUrl
+            name = name,
+            id = id,
+            email = email,
+            password = password,
+            avatarUrl = avatarUrl
         )
     }
 
-    private fun mapDomainKeyToStorageKey(key: Key): StorageUserKey {
-        return StorageUserKey(key.authId)
-    }
+    private fun Key.toStorage() = StorageUserKey(value = authId)
 }

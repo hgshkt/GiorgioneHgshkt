@@ -1,4 +1,4 @@
-package com.hgshkt.domain.data_model
+package com.hgshkt.domain.model.dataModel
 
 data class Key(
     val authId: String

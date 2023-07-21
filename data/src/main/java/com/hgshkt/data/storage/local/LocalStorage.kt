@@ -1,9 +1,9 @@
 package com.hgshkt.data.storage.local
 
-import com.hgshkt.domain.data_model.Key
+import com.hgshkt.data.storage.keys.StorageUserKey
 
 interface LocalStorage {
-    fun getCurrentUserKey(): Key
+    fun getCurrentUserKey(): StorageUserKey
 
-    fun saveCurrentUserKey(key: Key)
+    fun saveCurrentUserKey(key: StorageUserKey)
 }

@@ -1,6 +1,6 @@
 package com.hgshkt.domain.usecases
 
-import com.hgshkt.domain.data_model.Key
+import com.hgshkt.domain.model.dataModel.Key
 import com.hgshkt.domain.model.User
 import com.hgshkt.domain.repository.user.UserRepository
 

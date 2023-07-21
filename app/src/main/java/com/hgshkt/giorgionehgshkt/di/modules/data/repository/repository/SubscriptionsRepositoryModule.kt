@@ -7,7 +7,7 @@ import com.hgshkt.data.storage.subscription.FirebaseIngoingSubscriptionsStorage
 import com.hgshkt.data.storage.subscription.FirebaseOutgoingSubscriptionsStorage
 import com.hgshkt.data.storage.subscription.IngoingSubscriptionsStorage
 import com.hgshkt.data.storage.subscription.OutgoingSubscriptionsStorage
-import com.hgshkt.domain.data_model.Key
+import com.hgshkt.domain.model.dataModel.Key
 import com.hgshkt.giorgionehgshkt.di.modules.Name
 import com.hgshkt.giorgionehgshkt.di.modules.Name.ingoingSubscriptionsReference
 import com.hgshkt.giorgionehgshkt.di.modules.Name.outgoingSubscriptionsReference
